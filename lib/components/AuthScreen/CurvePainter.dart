@@ -12,8 +12,9 @@ class CurvePainter extends CustomPainter {
         begin: Alignment.centerRight,
         end: Alignment.centerLeft,
         colors: [
-          kprimColor,
+          kprimColor, // kthrColor,
           ksecColor,
+          //  kforColor,
         ]).createShader(rect);
 
     //  ui
