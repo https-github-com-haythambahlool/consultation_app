@@ -3,6 +3,7 @@ import 'package:consultation_app/view/home.dart';
 import 'package:consultation_app/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'view/Login_Signup.dart';
 
@@ -12,7 +13,7 @@ void main() {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark),
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: GoogleFonts.tajawal().fontFamily,
         primarySwatch: Colors.blue,
       ),
       home: splash(),

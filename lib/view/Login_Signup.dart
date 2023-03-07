@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:consultation_app/components/MySnackbar.dart';
 import 'package:consultation_app/constant/const.dart';
 import 'package:consultation_app/model_view/Auth.dart';
 import 'package:flutter/material.dart';
@@ -21,26 +24,26 @@ class Login_Signup extends StatefulWidget {
 
 class _Login_SignupState extends State<Login_Signup> {
   Auth auth = Auth();
-  String? email;
-  String? password;
-  String? username;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirPassword = TextEditingController();
+  TextEditingController username = TextEditingController();
+  bool _isValidateEmail = false;
+  bool _isValidatePassword = false;
+  bool _isValidateConfirm = false;
+  bool _isValidateName = false;
+
+  String errorEmail = 'Required Email';
+  String errorPassword = 'Required Password';
+  String errorname = 'Required Name';
+  String errorConfirm = 'The password not match';
+
+  bool _isAuth = false;
 
   bool isLogin = true;
 
   @override
   void initState() {
-    // auth.register('o7778@o.com', '123456', 'khalil');
-    auth.login('o7778@o.com', '123456').then((value) {
-      //  auth.getUser();
-      //auth.logout();
-      // auth.createUser();
-      //auth.getUserId();
-      // auth.deleteUser();
-      // auth.changePassword();
-      // auth.changeRole();
-      auth.getMails();
-    });
-
     // TODO: implement initState
     super.initState();
   }
@@ -83,7 +86,7 @@ class _Login_SignupState extends State<Login_Signup> {
                       padding: const EdgeInsets.only(top: 25),
                       margin: const EdgeInsets.symmetric(horizontal: 25),
                       width: mysize.width - 50,
-                      height: isLogin ? 400 : 500,
+                      height: isLogin ? 450 : 560,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(50),
@@ -107,32 +110,69 @@ class _Login_SignupState extends State<Login_Signup> {
                                 height: 20,
                               ),
                               !isLogin
-                                  ? AuthField(
-                                      labelText: 'Name',
-                                      onchanged: (value) {
-                                        username = value;
-                                      },
-                                    )
+                                  ? AnimatedContainer(
+                                      duration: Duration(),
+                                      height: 65,
+                                      margin: EdgeInsets.only(top: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25),
+                                      child: TextFormField(
+                                          controller: username,
+                                          decoration: inputDecoration.copyWith(
+                                            labelText: 'Name',
+                                            errorText: _isValidateName
+                                                ? errorname
+                                                : null,
+                                          )))
+
+                                  // AuthField(
+                                  //     labelText: 'Name',
+                                  //     controller: username,
+                                  //   )
                                   : const SizedBox(),
-                              AuthField(
-                                labelText: 'Email',
-                                onchanged: (value) {
-                                  email = value;
-                                },
-                              ),
-                              AuthField(
-                                labelText: 'Password',
-                                onchanged: (value) {
-                                  password = value;
-                                },
-                              ),
+                              AnimatedContainer(
+                                  duration: Duration(),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25),
+                                  margin: EdgeInsets.only(top: 10),
+                                  height: 65,
+                                  child: TextFormField(
+                                      controller: email,
+                                      decoration: inputDecoration.copyWith(
+                                        labelText: 'Email',
+                                        errorText: _isValidateEmail
+                                            ? errorEmail
+                                            : null,
+                                      ))),
+                              AnimatedContainer(
+                                  duration: Duration(),
+                                  height: 65,
+                                  margin: EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25),
+                                  child: TextFormField(
+                                      controller: password,
+                                      decoration: inputDecoration.copyWith(
+                                        labelText: 'Password',
+                                        errorText: _isValidatePassword
+                                            ? errorPassword
+                                            : null,
+                                      ))),
                               !isLogin
-                                  ? AuthField(
-                                      labelText: 'Confirm Password',
-                                      onchanged: (value) {
-                                        password = value;
-                                      },
-                                    )
+                                  ? AnimatedContainer(
+                                      duration: Duration(),
+                                      height: 65,
+                                      margin: EdgeInsets.only(top: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25),
+                                      child: TextFormField(
+                                          controller: confirPassword,
+                                          decoration: inputDecoration.copyWith(
+                                            labelText: 'Confirm Password',
+                                            errorText: _isValidateConfirm
+                                                ? errorConfirm
+                                                : null,
+                                          )))
                                   : const SizedBox(),
                               const SizedBox(
                                 height: 20,
@@ -140,11 +180,11 @@ class _Login_SignupState extends State<Login_Signup> {
                               AuthBtn(
                                 isLogin: isLogin,
                                 onTap: () {
-                                  auth.login('o@o.com', '123456');
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                    return Home();
-                                  }));
+                                  if (isLogin) {
+                                    login();
+                                  } else {
+                                    register();
+                                  }
                                 },
                               ),
                               const SizedBox(
@@ -194,6 +234,158 @@ class _Login_SignupState extends State<Login_Signup> {
         ],
       ),
     );
+  }
+
+  login() {
+    if (password.text != '' && email.text != '') {
+      _isAuth = true;
+      auth.login(email.text, password.text).then((value) {
+        if (value) {
+          email.clear();
+          password.clear();
+          errorPassword = 'Required Password';
+          errorEmail = 'Required Email';
+          _isAuth = false;
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(MySnackbar().mySnackBar(
+                body: 'Success Login to ${auth.user!.name}',
+                title: '',
+                type: ContentType.success));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return Home();
+          }));
+        } else {
+          email.clear();
+          password.clear();
+          _isAuth = false;
+
+          setState(() {
+            if (auth.errorMessage['error'] != null) {
+              if (auth.errorMessage['error']['password'] != null) {
+                errorPassword = auth.errorMessage['error']['password'][0];
+                _isValidatePassword = true;
+              } else {
+                errorPassword = 'Required Password';
+                _isValidatePassword = false;
+              }
+
+              if (auth.errorMessage['error']['email'] != null) {
+                errorEmail = auth.errorMessage['error']['email'][0];
+                _isValidateEmail = true;
+              } else {
+                errorEmail = 'Required Email';
+                _isValidateEmail = false;
+              }
+            } else {
+              _isValidateEmail = false;
+              _isValidatePassword = false;
+              errorEmail = 'Required Email';
+              errorPassword = 'Required Password';
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  MySnackbar().mySnackBar(
+                      body: auth.errorMessage['message'],
+                      title: 'Oh Sorry!!',
+                      type: ContentType.failure),
+                );
+            }
+          });
+        }
+      });
+    } else {
+      setState(() {
+        password.text == ''
+            ? _isValidatePassword = true
+            : _isValidatePassword = false;
+        email.text == '' ? _isValidateEmail = true : _isValidateEmail = false;
+      });
+    }
+  }
+
+  register() {
+    if (password.text != '' &&
+        email.text != '' &&
+        username.text != '' &&
+        confirPassword.text != '') {
+      if (password.text == confirPassword.text) {
+        setState(() {
+          _isValidateConfirm = false;
+        });
+        auth.register(email.text, password.text, username.text).then((value) {
+          if (value) {
+            email.clear();
+            password.clear();
+            username.clear();
+            confirPassword.clear();
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(MySnackbar().mySnackBar(
+                  body: 'Success Register ${auth.user!.name}',
+                  title: '',
+                  type: ContentType.success));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return Home();
+            }));
+          } else {
+            setState(() {
+              if (auth.errorMessage['error'] != null) {
+                if (auth.errorMessage['error']['password'] != null) {
+                  errorPassword = auth.errorMessage['error']['password'][0];
+                  _isValidatePassword = true;
+                } else {
+                  errorPassword = 'Required Password';
+                  _isValidatePassword = false;
+                }
+
+                if (auth.errorMessage['error']['email'] != null) {
+                  errorEmail = auth.errorMessage['error']['email'][0];
+                  _isValidateEmail = true;
+                } else {
+                  errorEmail = 'Required Email';
+                  _isValidateEmail = false;
+                }
+              } else {
+                _isValidateEmail = false;
+                _isValidatePassword = false;
+                _isValidateConfirm = false;
+                _isValidateName = false;
+
+                errorEmail = 'Required Email';
+                errorPassword = 'Required Password';
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    MySnackbar().mySnackBar(
+                        body: auth.errorMessage['message'],
+                        title: 'Oh Sorry!!',
+                        type: ContentType.failure),
+                  );
+              }
+            });
+          }
+        });
+      } else {
+        setState(() {
+          _isValidateEmail = false;
+          _isValidateName = false;
+          _isValidatePassword = false;
+          errorConfirm = 'The password not match';
+          _isValidateConfirm = true;
+        });
+      }
+    } else {
+      setState(() {
+        password.text == ''
+            ? _isValidatePassword = true
+            : _isValidatePassword = false;
+        email.text == '' ? _isValidateEmail = true : _isValidateEmail = false;
+        username.text == '' ? _isValidateName = true : _isValidateName = false;
+      });
+    }
   }
 
   Container switchBtn({required email, required password}) {
