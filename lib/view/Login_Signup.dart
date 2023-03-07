@@ -38,8 +38,30 @@ class _Login_SignupState extends State<Login_Signup> {
       // auth.deleteUser();
       // auth.changePassword();
       // auth.changeRole();
-      auth.getMails();
+      // auth.getMails();
+
+      //// auth.getSingleMail(5);
+      //// auth.updateMail();
+      //  auth.getSingleMailCopy();
+      // auth.getAllCategories();
+      ////auth.getSingleCategores(1);
+      // auth.createCategories();
+      // auth.getAlltags();
+      // auth.getAlltagsWithMail();
+      //  auth.getAlltagsWithId();
+      //  auth.createtags();
+      // auth.getAllSenders();
+      // auth.getSingleStatus();
+      //  auth.getRole();
+      // auth.Search(10);
+      // auth.getAllSenders();
+      // auth.getSingleSenders();
+      // auth.createSenders();
+      // auth.updateSenders();
+      // auth.deleteSenders();
     });
+
+    //// auth.createMail();
 
     // TODO: implement initState
     super.initState();
