@@ -1,9 +1,16 @@
+import 'dart:convert';
+
 import 'package:consultation_app/constant/const.dart';
+import 'package:consultation_app/model_view/Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
 import '../components/AuthScreen/AuthBtn.dart';
 import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
+import '../constant/const_Api.dart';
+import 'home.dart';
 
 class Login_Signup extends StatefulWidget {
   const Login_Signup({super.key});
@@ -13,7 +20,31 @@ class Login_Signup extends StatefulWidget {
 }
 
 class _Login_SignupState extends State<Login_Signup> {
+  Auth auth = Auth();
+  String? email;
+  String? password;
+  String? username;
+
   bool isLogin = true;
+
+  @override
+  void initState() {
+    // auth.register('o7778@o.com', '123456', 'khalil');
+    auth.login('o7778@o.com', '123456').then((value) {
+      //  auth.getUser();
+      //auth.logout();
+      // auth.createUser();
+      //auth.getUserId();
+      // auth.deleteUser();
+      // auth.changePassword();
+      // auth.changeRole();
+      auth.getMails();
+    });
+
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var mysize = MediaQuery.of(context).size;
@@ -71,24 +102,51 @@ class _Login_SignupState extends State<Login_Signup> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              switchBtn(),
+                              switchBtn(email: null, password: null),
                               const SizedBox(
                                 height: 20,
                               ),
                               !isLogin
-                                  ? AuthField(labelText: 'Name')
+                                  ? AuthField(
+                                      labelText: 'Name',
+                                      onchanged: (value) {
+                                        username = value;
+                                      },
+                                    )
                                   : const SizedBox(),
                               AuthField(
                                 labelText: 'Email',
+                                onchanged: (value) {
+                                  email = value;
+                                },
                               ),
-                              AuthField(labelText: 'Password'),
+                              AuthField(
+                                labelText: 'Password',
+                                onchanged: (value) {
+                                  password = value;
+                                },
+                              ),
                               !isLogin
-                                  ? AuthField(labelText: 'Confirm Password')
+                                  ? AuthField(
+                                      labelText: 'Confirm Password',
+                                      onchanged: (value) {
+                                        password = value;
+                                      },
+                                    )
                                   : const SizedBox(),
                               const SizedBox(
                                 height: 20,
                               ),
-                              AuthBtn(isLogin: isLogin),
+                              AuthBtn(
+                                isLogin: isLogin,
+                                onTap: () {
+                                  auth.login('o@o.com', '123456');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return Home();
+                                  }));
+                                },
+                              ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -138,7 +196,7 @@ class _Login_SignupState extends State<Login_Signup> {
     );
   }
 
-  Container switchBtn() {
+  Container switchBtn({required email, required password}) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 0.2),

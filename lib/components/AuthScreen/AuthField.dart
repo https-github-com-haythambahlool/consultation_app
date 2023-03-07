@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AuthField extends StatelessWidget {
-  AuthField({super.key, required this.labelText, this.controller});
+  AuthField(
+      {super.key,
+      required this.labelText,
+      this.controller,
+      required this.onchanged});
   String labelText;
   TextEditingController? controller;
+  Function onchanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
