@@ -21,6 +21,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.18.5 <3.0.0'
 
+
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -40,8 +41,9 @@ dependencies:
   animated_text_kit: ^4.2.2
   font_awesome_flutter: ^10.4.0
   material_tag_editor: ^0.1.2
-  http: ^0.13.5
-  
+  flutter_svg: ^1.1.6
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/icons/Icon ionic-md-contact.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
