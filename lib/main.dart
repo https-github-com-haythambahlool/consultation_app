@@ -1,6 +1,8 @@
+import 'package:consultation_app/routes_manager.dart';
 import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/home.dart';
 import 'package:consultation_app/view/splash.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login_Signup(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
+
     );
   }
 }

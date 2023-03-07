@@ -1,7 +1,6 @@
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../components/AuthScreen/AuthBtn.dart';
 import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
