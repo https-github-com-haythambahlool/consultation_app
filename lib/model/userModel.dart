@@ -23,7 +23,7 @@ class User {
   int? id;
   String? name;
   String? email;
-  Null? image;
+  String? image;
   String? emailVerifiedAt;
   String? roleId;
   String? createdAt;
