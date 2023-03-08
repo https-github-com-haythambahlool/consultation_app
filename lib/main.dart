@@ -2,11 +2,10 @@ import 'package:consultation_app/routes_manager.dart';
 import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/home.dart';
 import 'package:consultation_app/view/splash.dart';
-
+import 'package:consultation_app/view/testScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'view/Login_Signup.dart';
 
 void main() {
@@ -30,9 +29,9 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.tajawal().fontFamily,
         primarySwatch: Colors.blue,
       ),
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
-
+      // onGenerateRoute: RouteGenerator.getRoute,
+      // initialRoute: Routes.splashRoute,
+      home: test(),
     );
   }
 }
