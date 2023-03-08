@@ -1,5 +1,9 @@
 import 'package:consultation_app/constant/const.dart';
+
+import 'package:consultation_app/view/NewInbox.dart';
+
 import 'package:consultation_app/routes_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/MyExpansion.dart';
@@ -21,9 +25,14 @@ class _HomeState extends State<Home> {
     Size mysize = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return NewInbox();
+          }));
+        },
         child: Container(
-            //  margin: EdgeInsets.all(10),
+          //  margin: EdgeInsets.all(10),
             padding: const EdgeInsets.all(15),
             decoration: const BoxDecoration(color: Colors.white),
             child: Row(
@@ -155,12 +164,12 @@ class _HomeState extends State<Home> {
               ),
             ),
             MyExpansion(
-              mysize: mysize,
-              Contents: [
+              mySize: mysize,
+              contents: [
                 OrganizationCard(
                   mysize: mysize,
                   email:
-                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                  'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                   hash: '#Urgent # Egyptian Military',
                   images: ['assets/images/1.jpg', 'assets/images/2.png'],
                   orgName: 'Oraganization Name',
@@ -170,7 +179,7 @@ class _HomeState extends State<Home> {
                 OrganizationCard(
                   mysize: mysize,
                   email:
-                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                  'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                   hash: '#Urgent # Egyptian Military',
                   images: ['assets/images/1.jpg', 'assets/images/2.png'],
                   orgName: 'Oraganization Name',
@@ -180,10 +189,10 @@ class _HomeState extends State<Home> {
               ],
               title: 'Official Organization',
             ),
-            MyExpansion(mysize: mysize, Contents: [], title: 'NGOs'),
+            MyExpansion(mySize: mysize, contents: [], title: 'NGOs'),
             MyExpansion(
-                mysize: mysize,
-                Contents: [
+                mySize: mysize,
+                contents: [
                   Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
@@ -195,7 +204,7 @@ class _HomeState extends State<Home> {
                         OthersCard(
                           color: Colors.red,
                           email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                          'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                           orgName: 'Oraganization Name',
                           subjectName: 'Here we add the subject',
                           time: 'Today, 11:00 AM',
@@ -203,7 +212,7 @@ class _HomeState extends State<Home> {
                         OthersCard(
                           color: Colors.yellow,
                           email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                          'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                           orgName: 'Oraganization Name',
                           subjectName: 'Here we add the subject',
                           time: 'Today, 11:00 AM',

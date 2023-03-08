@@ -325,8 +325,8 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                 ),
               ),
               MyExpansion(
-                  mysize: mySize,
-                  Contents: [
+                  mySize: mySize,
+                  contents: [
                     CommentCard(
                       mySize: mySize,
                       image: 'assets/images/1.jpg',
