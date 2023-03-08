@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class MyExpansion extends StatelessWidget {
   MyExpansion({
     super.key,
-    required this.mysize,
-    required this.Contents,
+    required this.mySize,
+    required this.contents,
     required this.title,
   });
 
-  final Size mysize;
-  List<Widget> Contents;
+  final Size mySize;
+  List<Widget> contents;
   String title;
 
   @override
@@ -22,7 +22,7 @@ class MyExpansion extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headline6,
           ),
-          children: Contents),
+          children: contents),
     );
   }
 }
