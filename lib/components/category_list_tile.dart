@@ -25,10 +25,12 @@ class _CategoryListTileState extends State<CategoryListTile> {
       title: Text(widget.title),
       trailing: visible
           ? Icon(
-              Icons.check,
-              color: ksecColor,
-            )
+
+        Icons.check,
+        color: ksecColor,
+      )
           : SizedBox(),
     );
   }
 }
+

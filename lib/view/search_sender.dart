@@ -9,6 +9,7 @@ class SearchSenderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE6E6E6),
       appBar: AppBar(
         leadingWidth: 100,
         backgroundColor: Colors.transparent,
