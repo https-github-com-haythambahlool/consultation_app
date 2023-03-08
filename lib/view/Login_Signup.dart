@@ -14,6 +14,7 @@ import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
 import '../constant/const_Api.dart';
 import 'home.dart';
+import 'home.dart';
 
 class Login_Signup extends StatefulWidget {
   const Login_Signup({super.key});
@@ -44,7 +45,6 @@ class _Login_SignupState extends State<Login_Signup> {
 
   @override
   void initState() {
-
     // TODO: implement initState
     super.initState();
   }

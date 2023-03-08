@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: GestureDetector(
         onTap: () {},
         child: Container(
-            //  margin: EdgeInsets.all(10),
+          //  margin: EdgeInsets.all(10),
             padding: const EdgeInsets.all(15),
             decoration: const BoxDecoration(color: Colors.white),
             child: Row(
@@ -160,7 +160,7 @@ class _HomeState extends State<Home> {
                 OrganizationCard(
                   mysize: mysize,
                   email:
-                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                  'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                   hash: '#Urgent # Egyptian Military',
                   images: ['assets/images/1.jpg', 'assets/images/2.png'],
                   orgName: 'Oraganization Name',
@@ -170,7 +170,7 @@ class _HomeState extends State<Home> {
                 OrganizationCard(
                   mysize: mysize,
                   email:
-                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                  'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                   hash: '#Urgent # Egyptian Military',
                   images: ['assets/images/1.jpg', 'assets/images/2.png'],
                   orgName: 'Oraganization Name',
@@ -195,7 +195,7 @@ class _HomeState extends State<Home> {
                         OthersCard(
                           color: Colors.red,
                           email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                          'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                           orgName: 'Oraganization Name',
                           subjectName: 'Here we add the subject',
                           time: 'Today, 11:00 AM',
@@ -203,7 +203,7 @@ class _HomeState extends State<Home> {
                         OthersCard(
                           color: Colors.yellow,
                           email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                          'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
                           orgName: 'Oraganization Name',
                           subjectName: 'Here we add the subject',
                           time: 'Today, 11:00 AM',
