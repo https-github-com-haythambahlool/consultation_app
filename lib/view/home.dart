@@ -1,5 +1,9 @@
 import 'package:consultation_app/constant/const.dart';
+
+import 'package:consultation_app/view/NewInbox.dart';
+
 import 'package:consultation_app/routes_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/MyExpansion.dart';
@@ -21,7 +25,12 @@ class _HomeState extends State<Home> {
     Size mysize = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return NewInbox();
+          }));
+        },
         child: Container(
             //  margin: EdgeInsets.all(10),
             padding: const EdgeInsets.all(15),
@@ -155,8 +164,8 @@ class _HomeState extends State<Home> {
               ),
             ),
             MyExpansion(
-              mysize: mysize,
-              Contents: [
+              mySize: mysize,
+              contents: [
                 OrganizationCard(
                   mysize: mysize,
                   email:
@@ -180,10 +189,10 @@ class _HomeState extends State<Home> {
               ],
               title: 'Official Organization',
             ),
-            MyExpansion(mysize: mysize, Contents: [], title: 'NGOs'),
+            MyExpansion(mySize: mysize, contents: [], title: 'NGOs'),
             MyExpansion(
-                mysize: mysize,
-                Contents: [
+                mySize: mysize,
+                contents: [
                   Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(

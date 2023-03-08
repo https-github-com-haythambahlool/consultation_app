@@ -25,11 +25,13 @@ class _StatusListTileState extends State<StatusListTile> {
       },
       title: Text(widget.title),
       trailing: visible
+
           ? const Icon(
         Icons.check,
         color: ksecColor,
       )
           : const SizedBox(),
+
       leading: Container(
           height: 32,
           width: 32,
