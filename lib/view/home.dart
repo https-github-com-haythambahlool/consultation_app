@@ -1,5 +1,9 @@
 import 'package:consultation_app/constant/const.dart';
+
 import 'package:consultation_app/view/NewInbox.dart';
+
+import 'package:consultation_app/routes_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/MyExpansion.dart';
@@ -53,11 +57,15 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: FaIcon(
-            FontAwesomeIcons.barsStaggered,
-            color: Colors.black,
+        leading:  Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, Routes.searchRoute);
+            },
+            icon: const Icon(FontAwesomeIcons.barsStaggered,color: Colors.black),
+            // FontAwesomeIcons.barsStaggered,
+            // color: Colors.black,
           ),
         ),
         actions: const [
