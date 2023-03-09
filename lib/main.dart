@@ -1,11 +1,26 @@
 import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/sharedPrefernces/shared_pref_controller.dart';
+
+import 'package:consultation_app/routes_manager.dart';
+
 import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/home.dart';
+
+import 'package:consultation_app/view/inProgress.dart';
+
+import 'package:consultation_app/view/onboarding.dart';
+
 import 'package:consultation_app/view/splash.dart';
+import 'package:consultation_app/view/testScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'view/foregin.dart';
+
+import 'components/foregin.dart';
+
 import 'view/Login_Signup.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,7 +35,7 @@ void main() async {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark),
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,12 +59,14 @@ class MyMaterialApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: GoogleFonts.tajawal().fontFamily,
         primarySwatch: Colors.blue,
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(Provider.of<LanguageProvider>(context).language),
-      home: Login_Signup(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }

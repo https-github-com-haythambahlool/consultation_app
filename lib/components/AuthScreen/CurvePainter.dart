@@ -11,6 +11,10 @@ class CurvePainter extends CustomPainter {
     paint.shader = LinearGradient(
         begin: Alignment.centerRight,
         end: Alignment.centerLeft,
+        stops: [
+          20,
+          50
+        ],
         colors: [
           kprimColor,
           ksecColor,

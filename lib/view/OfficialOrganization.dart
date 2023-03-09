@@ -122,7 +122,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                     Theme(
                       data: Theme.of(context)
                           .copyWith(dividerColor: Colors.transparent),
-                      child: ExpansionTile(
+                      child: const ExpansionTile(
                         tilePadding: EdgeInsets.all(0),
                         textColor: Colors.black,
                         iconColor: Colors.black,

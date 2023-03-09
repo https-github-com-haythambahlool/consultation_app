@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
-
 import '../../constant/const.dart';
 import '../../view/home.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthBtn extends StatelessWidget {
-  const AuthBtn({
-    super.key,
-    required this.isLogin,
-  });
+  AuthBtn({super.key, required this.isLogin, required this.onTap});
 
   final bool isLogin;
+  Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return Home();
-        }));
-      },
+      onTap: onTap,
       child: Container(
         alignment: Alignment.center,
         width: 250,
