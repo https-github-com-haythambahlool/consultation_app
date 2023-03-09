@@ -1,12 +1,19 @@
 import 'package:consultation_app/components/MyExpansion.dart';
 import 'package:consultation_app/constant/const.dart';
+import 'package:consultation_app/view/category_screen.dart';
+import 'package:consultation_app/view/statuses_screen.dart';
+import 'package:consultation_app/view/tags_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
+import '../components/my_app_bar.dart';
 
 class NewInbox extends StatefulWidget {
   const NewInbox({super.key});
@@ -19,45 +26,12 @@ class _NewInboxState extends State<NewInbox> {
   @override
   Widget build(BuildContext context) {
     Size mySize = MediaQuery.of(context).size;
-
+    ImagePicker picker = ImagePicker();
+    XFile? image;
     return Scaffold(
       backgroundColor: backgrondColor,
-      appBar: AppBar(
-        leadingWidth: 150,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: [
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: kprimColor,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              Text(
-                'Home',
-                style: TextStyle(
-                  color: kprimColor,
-                  fontSize: 20,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: FaIcon(
-              FontAwesomeIcons.ellipsis,
-              color: kprimColor,
-            ),
-          ),
-        ],
+      appBar: MyAppBar(
+        title: 'New Inbox',
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -73,74 +47,100 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25)),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        const FaIcon(
-                          FontAwesomeIcons.user,
-                          color: Colors.grey,
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Sport Ministry',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w700),
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        colorScheme: ThemeData().colorScheme.copyWith(
+                              primary: Colors.red,
                             ),
-                            Text(
-                              'Official Organization',
-                              style: TextStyle(color: Colors.grey),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 60,
-                        ),
-                        Column(
-                          children: const [
-                            Text(
-                              'Today, 11:00 AM',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w700,
-                              ),
+                      ),
+                      child: TextField(
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(top: 15),
+                            border: InputBorder.none,
+                            hintText: 'Sender',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
                             ),
-                            Text(
-                              'Arch 2022/1032',
-                              style: TextStyle(color: Colors.grey),
-                            )
-                          ],
-                        ),
-                      ],
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.grey,
+                              size: 32,
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.info_outline),
+                              color: ksecColor,
+                              iconSize: 32,
+                            )),
+                      ),
                     ),
                     const Divider(
                       color: Colors.grey,
                     ),
-                    Theme(
-                      data: Theme.of(context)
-                          .copyWith(dividerColor: Colors.transparent),
-                      child: const ExpansionTile(
-                        tilePadding: EdgeInsets.all(0),
-                        textColor: Colors.black,
-                        iconColor: Colors.black,
-                        title: Text(
-                          'Title of mail',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    TextField(
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 15),
+                        border: InputBorder.none,
+                        hintText: 'Mobile',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
                         ),
-                        children: [
-                          Text(
-                            'Here we add the subject Here we add the subject ctthe subj Here we add the subj the subj Here we add the subject Here we  ere we add the subject Here we add the subject Here wt Here we add the subdd the subject',
-                            style: TextStyle(
-                              color: Colors.grey,
+                        prefixIcon: Icon(
+                          Icons.phone_iphone,
+                          color: Colors.grey,
+                          size: 32,
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return CategoryScreen();
+                        }));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Category',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
                             ),
-                          )
-                        ],
+                            SizedBox(
+                              width: 182,
+                            ),
+                            Text(
+                              'Other',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.angleRight,
+                              color: Colors.grey,
+                              size: 20,
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -150,121 +150,214 @@ class _NewInboxState extends State<NewInbox> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.hashtag,
-                      color: Colors.grey[600],
-                      size: 25,
-                    ),
-                    // Text(
-                    //   '#',
-                    //   style: TextStyle(
-                    //     color: Colors.grey[600],
-                    //     fontSize: 25,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '#Urgant',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextField(
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 15),
+                          border: InputBorder.none,
+                          hintText: 'Title of mail',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 24,
+                          ),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '#Egyptian Military',
-                      style: TextStyle(
+                      const Divider(
                         color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
                       ),
-                    ),
-                    SizedBox(
-                      width: 90,
-                    ),
-                    FaIcon(
-                      FontAwesomeIcons.angleRight,
-                      color: Colors.grey[400],
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
+                      TextField(
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Description',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
               SizedBox(
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.tag,
-                      color: Colors.grey[600],
-                      size: 25,
-                    ),
-                    // Text(
-                    //   '#',
-                    //   style: TextStyle(
-                    //     color: Colors.grey[600],
-                    //     fontSize: 25,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(18),
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // DateCard(
+                      //     icon: Icons.date_range,
+                      //     dateName: 'Date',
+                      //     color: Colors.red,
+                      //     dateDescription: 'Tuesday, July 5, 2022'),
+                      ExpansionTile(
+                          title: Text('Date', style: TextStyle(fontSize: 18)),
+                          leading: Icon(
+                            Icons.date_range,
+                            color: Colors.red,
+                          ),
+                          subtitle: Text(
+                            'Tuesday, July 5, 2022',
+                            style: TextStyle(color: ksecColor, fontSize: 12),
+                          ),
+                          children: [
+                            SfDateRangePicker(
+                              selectionMode:
+                                  DateRangePickerSelectionMode.single,
+                              initialSelectedRange: PickerDateRange(
+                                  DateTime.now()
+                                      .subtract(const Duration(days: 4)),
+                                  DateTime.now().add(const Duration(days: 3))),
+                            ),
+                          ]),
+                      const Divider(
+                        color: Colors.grey,
                       ),
-                      child: Text(
-                        'Pending',
+                      ListTile(
+                        leading: Icon(
+                          Icons.archive,
+                          color: Colors.grey,
+                        ),
+                        title: Text(
+                          'Archive number',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        subtitle: TextField(
+                          onChanged: (value) {},
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '2022/6019',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return TagsScreen();
+                  }));
+                },
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.hashtag,
+                        color: Colors.grey[600],
+                        size: 25,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Tags',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: 200,
-                    ),
-                    FaIcon(
-                      FontAwesomeIcons.angleRight,
-                      color: Colors.grey[400],
-                      size: 20,
-                    ),
-                  ],
+                      SizedBox(
+                        width: 258,
+                      ),
+                      FaIcon(
+                        FontAwesomeIcons.angleRight,
+                        color: Colors.grey[400],
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return StatusScreen();
+                  }));
+                },
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.tag,
+                        color: Colors.grey[600],
+                        size: 25,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Text(
+                          'Inbox ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        width: 220,
+                      ),
+                      FaIcon(
+                        FontAwesomeIcons.angleRight,
+                        color: Colors.grey[400],
+                        size: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(15),
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
@@ -280,10 +373,15 @@ class _NewInboxState extends State<NewInbox> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ',
-                      style: TextStyle(
-                        fontSize: 14,
+                    TextField(
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Add Decision...',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],
@@ -293,57 +391,31 @@ class _NewInboxState extends State<NewInbox> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(20),
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.all(12),
+                width: double.infinity,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(25)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Add Image',
-                      style: TextStyle(
-                        color: kprimColor,
-                        fontSize: 18,
-                      ),
+                child: TextButton(
+                  onPressed: () async {
+                    await picker.pickImage(source: ImageSource.gallery);
+                  },
+                  child: Text(
+                    'Add Image',
+                    style: TextStyle(
+                      color: ksecColor,
+                      fontSize: 18,
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    AddImageCard(
-                      image: 'assets/images/1.jpg',
-                      name: 'Image',
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    AddImageCard(
-                      image: 'assets/images/2.png',
-                      name: 'Image2',
-                    ),
-                  ],
+                  ),
                 ),
               ),
-              MyExpansion(
-                  mysize: mySize,
-                  Contents: [
-                    CommentCard(
-                      mySize: mySize,
-                      image: 'assets/images/1.jpg',
-                      Comment: 'The issue tranford to AAA aaa',
-                      name: 'Hussam',
-                      time: 'Today, 11:00 AM',
-                    ),
-                    CommentCard(
-                      image: 'assets/images/2.png',
-                      Comment: 'The issue tranford to BBB bbb',
-                      name: 'Ali',
-                      time: 'Today, 11:00 AM',
-                      mySize: mySize,
-                    ),
-                    CommentField()
-                  ],
-                  title: 'Activity'),
+              ExpansionTile(
+                  title: Text(
+                'Activity',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              )),
+              CommentField(),
               SizedBox(
                 height: 50,
               ),

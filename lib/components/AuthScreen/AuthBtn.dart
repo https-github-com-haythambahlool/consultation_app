@@ -27,7 +27,7 @@ class AuthBtn extends StatelessWidget {
                   ksecColor,
                 ])),
         child: Text(
-          isLogin ? 'تسجيل الدخول' : 'تسجيل',
+          isLogin ? 'Login' : ' Sign Up',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,

@@ -3,7 +3,6 @@ const baseUrl = 'https://palmail.betweenltd.com/api';
 const loginUrl = '$baseUrl/login';
 const registerUrl = '$baseUrl/register';
 const userInfoUrl = '$baseUrl/user';
-const updateUserUrl = '$baseUrl/user/update';
 const logoutUrl = '$baseUrl/logout';
 const allUsersUrl = '$baseUrl/users';
 //const createUserUrl='$baseUrl/'
@@ -16,15 +15,10 @@ const createMailUrl = '$baseUrl/mails';
 // const updateMailUrl = '$baseUrl/mails/{id}';
 // const deleteSingleMailCopy = '$baseUrl/mails/{id}';
 const getAllcategoriesUrl = '$baseUrl/categories';
-const getSinglecategoriesUrl = '$baseUrl/categories/1';
 const createCategoriesUrl = '$baseUrl/categories';
 const getAlltagsUrl = '$baseUrl/tags';
 const createtagsUrl = '$baseUrl/tags';
-const getAllStutassUrl = '$baseUrl/statuses?mail=false';
-const getSingleStatusUrl = "$baseUrl/statuses/1?mail=true";
 const getRoleUrl = '$baseUrl/roles';
-const getAllSenderUrl = '$baseUrl/senders?mail=true';
-const getSingleSenderUrl = '$baseUrl/senders/6?mail=false';
 const createSenderUsrl = "$baseUrl/senders";
 
 String deleteSenderUrl(int idUser) {
@@ -35,20 +29,20 @@ String updateSendersUrl(int idUser) {
   return "$baseUrl/senders/$idUser";
 }
 
-String SearchUrl(int idUser) {
-  return "$baseUrl/search?text=test&start&end&$idUser";
+String SearchUrl(int statusId) {
+  return "$baseUrl/search?text=test&start&end&$statusId";
 }
 
-String getAlltagsWithMailUrl(String email) {
-  return "$baseUrl/tags?tags=[2,3]$email";
+String getAlltagsWithMailUrl(var tagsId) {
+  return "$baseUrl/tags?tags=$tagsId";
 }
 
-String getAlltagsWithIdUrl(int idUser) {
-  return '$baseUrl/mails/$idUser/tags';
+String getAlltagsWithIdUrl(int idMail) {
+  return '$baseUrl/mails/$idMail/tags';
 }
 
-String deleteSingleMailCopyUrl(int idUser) {
-  return '$baseUrl/mails/$idUser';
+String deleteMailUrl(int idmail) {
+  return '$baseUrl/mails/$idmail';
 }
 
 String updateMailUrl(int idUser) {
@@ -80,3 +74,33 @@ String changeRoleUrl(int idUser) {
 }
 
 const allMails = '$baseUrl/mails';
+
+// const updateUserUrl = ;
+String updateUserUrl({required String name, required int id}) {
+  return '$baseUrl/user/$id?name=$name';
+}
+
+// const getSinglecategoriesUrl = ;
+String getSinglecategoriesUrl(int categoryId) {
+  return '$baseUrl/categories/$categoryId';
+}
+
+// const getAllStutassUrl =
+String getAllStutassUrl(bool value) {
+  return '$baseUrl/statuses?mail=$value';
+}
+
+// const getSingleStatusUrl =
+String getSingleStatusUrl({required int statusId, required bool value}) {
+  return "$baseUrl/statuses/$statusId?mail=$value";
+}
+
+// const getAllSenderUrl =
+String getAllSenderUrl(bool value) {
+  return '$baseUrl/senders?mail=$value';
+}
+
+// const getSingleSenderUrl =
+String getSingleSenderUrl({required int id, required bool value}) {
+  return '$baseUrl/senders/$id?mail=$value';
+}
