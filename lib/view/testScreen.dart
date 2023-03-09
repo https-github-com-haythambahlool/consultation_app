@@ -13,7 +13,7 @@ class test extends StatelessWidget {
         child: ElevatedButton(
             onPressed: () {
               auth.login('o@o.com', '123456').then((value) {
-                auth.createMail();
+                auth.getSingleSender();
               });
             },
             child: Text('test test')),

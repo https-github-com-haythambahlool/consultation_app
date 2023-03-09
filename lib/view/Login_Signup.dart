@@ -70,18 +70,15 @@ class _Login_SignupState extends State<Login_Signup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/palestine.png',
-                      width: 75,
+                      'assets/images/logo.jpg',
+                      width: 120,
                     ),
                     Text(
-                      'ديوان رئيس الوزراء',
+                      '',
                       style: GoogleFonts.arefRuqaa(
                         color: Colors.white,
                         fontSize: 25,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
                     ),
                     AnimatedContainer(
                       padding: const EdgeInsets.only(top: 25),
@@ -192,7 +189,7 @@ class _Login_SignupState extends State<Login_Signup> {
                                 height: 20,
                               ),
                               const Text(
-                                'أو',
+                                'OR',
                                 style: TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -436,10 +433,10 @@ class _Login_SignupState extends State<Login_Signup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل الدخول',
+                    'Login',
                     style: TextStyle(
                       color: isLogin ? Colors.white : kprimColor,
-                      fontSize: 17,
+                      fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -463,7 +460,7 @@ class _Login_SignupState extends State<Login_Signup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل',
+                    'Sign Up',
                     style: TextStyle(
                       color: isLogin ? kprimColor : Colors.white,
                       fontSize: 20,

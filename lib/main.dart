@@ -1,6 +1,7 @@
 import 'package:consultation_app/routes_manager.dart';
 import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/home.dart';
+import 'package:consultation_app/view/onboarding.dart';
 import 'package:consultation_app/view/splash.dart';
 import 'package:consultation_app/view/testScreen.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +37,8 @@ class MyApp extends StatelessWidget {
 
 
 
-      home: foreign(),
-      // onGenerateRoute: RouteGenerator.getRoute,
-      // initialRoute: Routes.splashRoute,
+       onGenerateRoute: RouteGenerator.getRoute,
+       initialRoute: Routes.splashRoute,
 
     );
   }
