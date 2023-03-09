@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'package:consultation_app/components/homeScreen/Tags.dart';
 import 'package:consultation_app/constant/const_Api.dart';
+import 'package:consultation_app/model/CategoryModel.dart';
 import 'package:consultation_app/model/MailModel.dart';
 import 'package:consultation_app/model/MailsModel.dart';
+import 'package:consultation_app/model/TagsModel.dart';
 import 'package:consultation_app/model/userModel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +16,9 @@ class Auth extends ChangeNotifier {
   Map errorMessage = {};
   MailModel? mail;
   MailsModel? allMails;
-
+  CategoryModel? categoryModel;
+  Category? category;
+  TagModel? tagsModel;
   Future<bool> login(String _email, String _password) async {
     http.Response response = await http.post(Uri.parse(loginUrl), body: {
       'email': _email,
@@ -70,10 +75,13 @@ class Auth extends ChangeNotifier {
 //review 500 Internal Server Error
 
   Future updateUser() async {
-    http.Response response = await http.post(Uri.parse(updateUserUrl),
-        headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'name': 'Felfel'});
-    print('response from update :${response.body},');
+    http.Response response = await http.put(
+      Uri.parse(updateUserUrl(id: user!.id!, name: 'Som3a Jarada')),
+      headers: {'Authorization': 'Bearer ${token!.token!}'},
+    );
+
+    print(
+        'Status code ${response.statusCode}  response from update :${response.body},');
   }
 
   Future logout() async {
@@ -88,17 +96,18 @@ class Auth extends ChangeNotifier {
     print(response.body);
   }
 
-//review 500 Internal Server Error
-
   Future createUser() async {
     http.Response response = await http.post(Uri.parse(allUsersUrl), headers: {
       'Authorization': 'Bearer ${token!.token!}'
     }, body: {
       'name': 'Som3a',
-      'email': 'som3a@gmail.com',
-      'password': '123456'
+      'email': 'som3aa@gmail.com',
+      'password': '123456',
+      'password_confirmation': '123456',
+      'role_id': '4'
     });
-    print(response.body);
+    print(
+        'and status code : ${response.statusCode} ///// body : ${response.body} ');
   }
 
   Future getUserId() async {
@@ -114,12 +123,12 @@ class Auth extends ChangeNotifier {
     print(response.body);
   }
 
-//review 200 In PostMan 302 In VSCode
   Future changePassword() async {
-    http.Response response = await http.put(
+    print('user : ${user!.id!}');
+    http.Response response = await http.post(
         Uri.parse(changePasswordUrl(user!.id!)),
         headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'password': '12345678'});
+        body: {'password': '123456', 'password_confirmation': '123456'});
     print('change password ${response.statusCode} and ||| ${response.body}');
     if (response.statusCode == 200) {
       print(response.body);
@@ -159,8 +168,6 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  // هان مش عارف بظهرش اشي
-
   Future createMail() async {
     Map<String, dynamic> body = {
       'subject': 'subject',
@@ -177,9 +184,7 @@ class Auth extends ChangeNotifier {
         {'body': 'any text2', 'user_id': 1}
       ]),
     };
-    print(body);
-    print('Bearer ${token!.token!}');
-    print('create');
+
     http.Response response = await http.post(
       Uri.parse(createMailUrl),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
@@ -187,44 +192,59 @@ class Auth extends ChangeNotifier {
     );
     print(
         'create mail : ${response.body} and status code : ${response.statusCode}');
-  }
+    if (response.statusCode == 200) {
+      dynamic body = jsonDecode(response.body);
 
-  //       وهان كمان
+      mail = MailModel.fromJson(body['mail']);
+    }
+  }
 
   Future updateMail() async {
     http.Response response =
         await http.put(Uri.parse(updateMailUrl(user!.id!)), headers: {
       'Authorization': 'Bearer ${token!.token!}'
     }, body: {
-      'status_id': 1,
-      'tags': [2, 3],
-      'activities': [
-        {"body": "any text", "user_id": 6},
-        {"body": "any text2", "user_id": 5}
-      ],
+      'status_id': '1',
+      'tags': jsonEncode([2, 3]),
+      'activities': jsonEncode(
+        [
+          {"body": "any text", "user_id": 1},
+          {"body": "any text2", "user_id": 1}
+        ],
+      ),
+      'decision': 'new decisi',
+      'final_decision': 'jdasjd',
+      'idAttachmentsForDelete': jsonEncode([]),
+      'pathAttachmentsForDelete': jsonEncode([])
     });
-    print(response.body);
+    print(
+        'status code : ${response.statusCode} , ||||| body : ${response.body}');
   }
 
-  Future getSingleMailCopy() async {
+  Future deleteMail() async {
     http.Response response = await http.delete(
-        Uri.parse(deleteSingleMailCopyUrl(user!.id!)),
+        Uri.parse(deleteMailUrl(mail!.id!)),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print(response.body);
+    if (response.statusCode == 200) {
+      print('delete ${response.body}');
+    }
   }
 
-  //
-  // وهان
-  // Future getAllCategories() async {
-  //   http.Response response = await http.get(Uri.parse(getAllcategoriesUrl),
-  //       headers: {'Authorization': 'Bearer ${token!.token!}'});
-  //   print("getAllCategories : ${response.body}");
-  // }
-
-  Future getSingleCategores(int id) async {
-    http.Response response = await http.get(Uri.parse(getSinglecategoriesUrl),
+  Future getAllCategories() async {
+    http.Response response = await http.get(Uri.parse(getAllcategoriesUrl),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print(response.body);
+    print("getAllCategories : ${response.body}");
+  }
+
+  Future getSingleCategores() async {
+    http.Response response = await http.get(
+        Uri.parse(getSinglecategoriesUrl(2)),
+        headers: {'Authorization': 'Bearer ${token!.token!}'});
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      categoryModel = CategoryModel.fromJson(body);
+      print('success data');
+    }
   }
 
   Future createCategories() async {
@@ -232,26 +252,35 @@ class Auth extends ChangeNotifier {
         headers: {'Authorization': 'Bearer ${token!.token!}'},
         body: {'name': 'Som3a'});
     print("Create Categories:${response.body}");
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      category = Category.fromJson(body['category']);
+      print('success');
+    }
   }
 
   Future getAlltags() async {
     http.Response response = await http.get(
-      Uri.parse(getAllcategoriesUrl),
+      Uri.parse(getAlltagsUrl),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      tagsModel = TagModel.fromJson(body);
+    }
     print(response.body);
   }
 
   Future getAlltagsWithMail() async {
     http.Response response = await http.get(
-      Uri.parse(getAlltagsWithMailUrl("o@o.com")),
+      Uri.parse(getAlltagsWithMailUrl([1, 2])),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
     print(response.body);
   }
 
-  Future getAlltagsWithId() async {
-    http.Response response = await http.get(Uri.parse(getAlltagsWithIdUrl(5)),
+  Future getAlltagsOfMail() async {
+    http.Response response = await http.get(Uri.parse(getAlltagsWithIdUrl(13)),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
     print(response.body);
   }
@@ -265,7 +294,7 @@ class Auth extends ChangeNotifier {
 
   Future getALlStatus() async {
     http.Response response = await http.get(
-      Uri.parse(getAllStutassUrl),
+      Uri.parse(getAllStutassUrl(true)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
     print(response.body);
@@ -273,20 +302,22 @@ class Auth extends ChangeNotifier {
 
   Future getSingleStatus() async {
     http.Response response = await http.get(
-      Uri.parse(getSingleStatusUrl),
+      Uri.parse(getSingleStatusUrl(statusId: 2, value: true)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
     print(response.body);
   }
 
-  Future getRole() async {
+  Future getallRoles() async {
     http.Response response = await http.get(
       Uri.parse(getRoleUrl),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
+    print('roles ${response.body}');
   }
 
-  Future Search(int id) async {
+// pending
+  Future Search(int statusId) async {
     http.Response response = await http.get(
       Uri.parse(SearchUrl(10)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
@@ -296,15 +327,15 @@ class Auth extends ChangeNotifier {
 
   Future getAllSenders() async {
     http.Response response = await http.get(
-      Uri.parse(getAllSenderUrl),
+      Uri.parse(getAllSenderUrl(false)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
     print(response.body);
   }
 
-  Future getSingleSenders() async {
+  Future getSingleSender() async {
     http.Response response = await http.get(
-      Uri.parse(getSingleSenderUrl),
+      Uri.parse(getSingleSenderUrl(id: 2, value: false)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
     print(response.body);

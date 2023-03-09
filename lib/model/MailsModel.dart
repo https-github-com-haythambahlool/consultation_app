@@ -1,5 +1,7 @@
 import 'package:consultation_app/model/MailModel.dart';
 
+import 'LinksModel.dart';
+
 class MailsModel {
   MailsModel({
     required this.mails,
@@ -81,114 +83,6 @@ class Mails {
     _data['prev_page_url'] = prevPageUrl;
     _data['to'] = to;
     _data['total'] = total;
-    return _data;
-  }
-}
-
-class Category {
-  Category({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.updatedAt,
-  });
-  late final int id;
-  late final String name;
-  late final String createdAt;
-  late final String updatedAt;
-
-  Category.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
-  }
-}
-
-class Tags {
-  Tags({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.pivot,
-  });
-  late final int id;
-  late final String name;
-  late final String createdAt;
-  late final String updatedAt;
-  late final Pivot pivot;
-
-  Tags.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    pivot = Pivot.fromJson(json['pivot']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['pivot'] = pivot.toJson();
-    return _data;
-  }
-}
-
-class Pivot {
-  Pivot({
-    required this.mailId,
-    required this.tagId,
-  });
-  late final String mailId;
-  late final String tagId;
-
-  Pivot.fromJson(Map<String, dynamic> json) {
-    mailId = json['mail_id'];
-    tagId = json['tag_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['mail_id'] = mailId;
-    _data['tag_id'] = tagId;
-    return _data;
-  }
-}
-
-class Links {
-  Links({
-    this.url,
-    required this.label,
-    required this.active,
-  });
-  late final String? url;
-  late final String label;
-  late final bool active;
-
-  Links.fromJson(Map<String, dynamic> json) {
-    url = null;
-    label = json['label'];
-    active = json['active'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['url'] = url;
-    _data['label'] = label;
-    _data['active'] = active;
     return _data;
   }
 }
