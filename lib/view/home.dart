@@ -1,12 +1,15 @@
 import 'package:consultation_app/constant/const.dart';
+import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/view/NewInbox.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../components/MyExpansion.dart';
 import '../components/homeScreen/OrganizationCard.dart';
 import '../components/homeScreen/OthersCard.dart';
 import '../components/homeScreen/StatusCard.dart';
 import '../components/homeScreen/Tags.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -32,14 +35,14 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(15),
             decoration: const BoxDecoration(color: Colors.white),
             child: Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.add_circle,
                   color: Colors.blue,
                   size: 30,
                 ),
                 Text(
-                  'New Inbox',
+                  AppLocalizations.of(context)!.newInbox,
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 25,
@@ -60,16 +63,22 @@ class _HomeState extends State<Home> {
             color: Colors.black,
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 23,
+            child: GestureDetector(
+              onTap: () {
+                // Provider.of<LanguageProvider>(context, listen: false)
+                //     .changeLanguage();
+              },
               child: CircleAvatar(
-                radius: 20,
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage('assets/images/1.jpg'),
+                radius: 23,
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage('assets/images/1.jpg'),
+                ),
               ),
             ),
           )
@@ -103,7 +112,7 @@ class _HomeState extends State<Home> {
                       width: 0.5,
                     ),
                   ),
-                  hintText: 'Search',
+                  hintText: AppLocalizations.of(context)!.search,
                   hintStyle: TextStyle(color: Colors.grey[400]),
                   prefixIconColor: Colors.grey[400],
                   prefixIcon: const Padding(
@@ -127,14 +136,16 @@ class _HomeState extends State<Home> {
                   Column(
                     children: [
                       StatusCard(
-                          circleColor: Colors.red, num: 9, statusName: 'Inbox'),
+                          circleColor: Colors.red,
+                          num: 9,
+                          statusName: AppLocalizations.of(context)!.inbox),
                       const SizedBox(
                         height: 10,
                       ),
                       StatusCard(
                           circleColor: Colors.blue,
                           num: 9,
-                          statusName: 'In Progress')
+                          statusName: AppLocalizations.of(context)!.inProgress)
                     ],
                   ),
                   Column(
@@ -142,14 +153,14 @@ class _HomeState extends State<Home> {
                       StatusCard(
                           circleColor: Colors.yellow,
                           num: 9,
-                          statusName: 'Pending'),
+                          statusName: AppLocalizations.of(context)!.pending),
                       const SizedBox(
                         height: 10,
                       ),
                       StatusCard(
                           circleColor: Colors.green,
                           num: 9,
-                          statusName: 'Completed')
+                          statusName: AppLocalizations.of(context)!.completed)
                     ],
                   )
                 ],
@@ -179,9 +190,12 @@ class _HomeState extends State<Home> {
                   time: 'Today, 11:00 AM',
                 )
               ],
-              title: 'Official Organization',
+              title: AppLocalizations.of(context)!.officialOrganization,
             ),
-            MyExpansion(mySize: mysize, contents: [], title: 'NGOs'),
+            MyExpansion(
+                mySize: mysize,
+                contents: [],
+                title: AppLocalizations.of(context)!.ngos),
             MyExpansion(
                 mySize: mysize,
                 contents: [
@@ -213,11 +227,11 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ],
-                title: 'Others'),
+                title: AppLocalizations.of(context)!.other),
             Padding(
               padding: EdgeInsets.only(top: 25, left: 15),
               child: Text(
-                'Tags',
+                AppLocalizations.of(context)!.tags,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),

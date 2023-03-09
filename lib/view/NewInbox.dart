@@ -14,6 +14,7 @@ import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
 import '../components/my_app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewInbox extends StatefulWidget {
   const NewInbox({super.key});
@@ -31,7 +32,7 @@ class _NewInboxState extends State<NewInbox> {
     return Scaffold(
       backgroundColor: backgrondColor,
       appBar: MyAppBar(
-        title: 'New Inbox',
+        title: AppLocalizations.of(context)!.newInbox,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -58,7 +59,7 @@ class _NewInboxState extends State<NewInbox> {
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 15),
                             border: InputBorder.none,
-                            hintText: 'Sender',
+                            hintText: AppLocalizations.of(context)!.sender,
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontSize: 16,
@@ -84,7 +85,7 @@ class _NewInboxState extends State<NewInbox> {
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15),
                         border: InputBorder.none,
-                        hintText: 'Mobile',
+                        hintText: AppLocalizations.of(context)!.mobile,
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
@@ -113,19 +114,20 @@ class _NewInboxState extends State<NewInbox> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Category',
+                              AppLocalizations.of(context)!.category,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
                               ),
                             ),
                             SizedBox(
-                              width: 182,
+                              width: 172,
                             ),
                             Text(
-                              'Other',
+                              AppLocalizations.of(context)!.other,
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 16,
@@ -163,7 +165,7 @@ class _NewInboxState extends State<NewInbox> {
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(top: 15),
                           border: InputBorder.none,
-                          hintText: 'Title of mail',
+                          hintText: AppLocalizations.of(context)!.titleOfMail,
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 24,
@@ -177,7 +179,7 @@ class _NewInboxState extends State<NewInbox> {
                         onChanged: (value) {},
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Description',
+                          hintText: AppLocalizations.of(context)!.description,
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 18,
@@ -204,7 +206,8 @@ class _NewInboxState extends State<NewInbox> {
                       //     color: Colors.red,
                       //     dateDescription: 'Tuesday, July 5, 2022'),
                       ExpansionTile(
-                          title: Text('Date', style: TextStyle(fontSize: 18)),
+                          title: Text(AppLocalizations.of(context)!.date,
+                              style: TextStyle(fontSize: 18)),
                           leading: Icon(
                             Icons.date_range,
                             color: Colors.red,
@@ -232,7 +235,7 @@ class _NewInboxState extends State<NewInbox> {
                           color: Colors.grey,
                         ),
                         title: Text(
-                          'Archive number',
+                          AppLocalizations.of(context)!.archiveNumber,
                           style: TextStyle(fontSize: 18),
                         ),
                         subtitle: TextField(
@@ -276,7 +279,7 @@ class _NewInboxState extends State<NewInbox> {
                         width: 10,
                       ),
                       Text(
-                        'Tags',
+                        AppLocalizations.of(context)!.tags,
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
@@ -329,7 +332,7 @@ class _NewInboxState extends State<NewInbox> {
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Text(
-                          'Inbox ',
+                          AppLocalizations.of(context)!.inbox,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -367,7 +370,7 @@ class _NewInboxState extends State<NewInbox> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Decision',
+                      AppLocalizations.of(context)!.decision,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
@@ -377,7 +380,7 @@ class _NewInboxState extends State<NewInbox> {
                       onChanged: (value) {},
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Add Decision...',
+                        hintText: AppLocalizations.of(context)!.addDecision,
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
@@ -402,7 +405,7 @@ class _NewInboxState extends State<NewInbox> {
                     await picker.pickImage(source: ImageSource.gallery);
                   },
                   child: Text(
-                    'Add Image',
+                    AppLocalizations.of(context)!.addImage,
                     style: TextStyle(
                       color: ksecColor,
                       fontSize: 18,
@@ -412,7 +415,7 @@ class _NewInboxState extends State<NewInbox> {
               ),
               ExpansionTile(
                   title: Text(
-                'Activity',
+                AppLocalizations.of(context)!.activity,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               )),
               CommentField(),

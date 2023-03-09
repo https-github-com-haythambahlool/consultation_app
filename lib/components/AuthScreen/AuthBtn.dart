@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constant/const.dart';
 import '../../view/home.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthBtn extends StatelessWidget {
   const AuthBtn({
@@ -34,7 +35,9 @@ class AuthBtn extends StatelessWidget {
                   ksecColor,
                 ])),
         child: Text(
-          isLogin ? 'تسجيل الدخول' : 'تسجيل',
+          isLogin
+              ? AppLocalizations.of(context)!.signUp
+              : AppLocalizations.of(context)!.login,
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,

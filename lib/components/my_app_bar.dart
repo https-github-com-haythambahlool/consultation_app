@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant/const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -23,7 +24,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         padding: EdgeInsets.only(left: 12),
         child: TextButton(
           child: Text(
-            'Cancel',
+            AppLocalizations.of(context)!.cancel,
             style: TextStyle(
               color: ksecColor,
               fontSize: 20,
@@ -37,7 +38,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: EdgeInsets.only(right: 12),
           child: TextButton(
             child: Text(
-              'Done',
+              AppLocalizations.of(context)!.done,
               style: TextStyle(
                 color: ksecColor,
                 fontSize: 20,

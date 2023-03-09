@@ -2,7 +2,6 @@ import 'package:consultation_app/components/my_app_bar.dart';
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
 
-import '../components/category_list_tile.dart';
 import '../components/homeScreen/Tags.dart';
 
 class TagsScreen extends StatefulWidget {

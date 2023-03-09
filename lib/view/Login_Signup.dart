@@ -1,10 +1,14 @@
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../components/AuthScreen/AuthBtn.dart';
 import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../providers/language_provider.dart';
 
 class Login_Signup extends StatefulWidget {
   const Login_Signup({super.key});
@@ -20,6 +24,14 @@ class _Login_SignupState extends State<Login_Signup> {
     var mysize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backgrondColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ksecColor,
+        onPressed: () {
+          Provider.of<LanguageProvider>(context, listen: false)
+              .changeLanguage();
+        },
+        child: Icon(Icons.language),
+      ),
       body: Stack(
         children: [
           CustomPaint(
@@ -77,14 +89,20 @@ class _Login_SignupState extends State<Login_Signup> {
                                 height: 20,
                               ),
                               !isLogin
-                                  ? AuthField(labelText: 'Name')
+                                  ? AuthField(
+                                      labelText:
+                                          AppLocalizations.of(context)!.name)
                                   : const SizedBox(),
                               AuthField(
-                                labelText: 'Email',
+                                labelText: AppLocalizations.of(context)!.email,
                               ),
-                              AuthField(labelText: 'Password'),
+                              AuthField(
+                                  labelText:
+                                      AppLocalizations.of(context)!.password),
                               !isLogin
-                                  ? AuthField(labelText: 'Confirm Password')
+                                  ? AuthField(
+                                      labelText: AppLocalizations.of(context)!
+                                          .confirmPassword)
                                   : const SizedBox(),
                               const SizedBox(
                                 height: 20,
@@ -93,8 +111,8 @@ class _Login_SignupState extends State<Login_Signup> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              const Text(
-                                'أو',
+                              Text(
+                                AppLocalizations.of(context)!.or,
                                 style: TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -186,7 +204,7 @@ class _Login_SignupState extends State<Login_Signup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل الدخول',
+                    AppLocalizations.of(context)!.signUp,
                     style: TextStyle(
                       color: isLogin ? Colors.white : kprimColor,
                       fontSize: 17,
@@ -213,7 +231,7 @@ class _Login_SignupState extends State<Login_Signup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل',
+                    AppLocalizations.of(context)!.login,
                     style: TextStyle(
                       color: isLogin ? kprimColor : Colors.white,
                       fontSize: 20,
