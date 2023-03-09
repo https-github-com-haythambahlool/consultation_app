@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constant/const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommentField extends StatelessWidget {
   const CommentField({
@@ -16,7 +17,7 @@ class CommentField extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 100, bottom: 40),
-            hintText: 'Add new Activity ...',
+            hintText: AppLocalizations.of(context)!.addNewActivity,
             hintStyle: TextStyle(
               color: Colors.grey[500],
               fontSize: 14,

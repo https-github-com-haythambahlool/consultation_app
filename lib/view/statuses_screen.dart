@@ -2,8 +2,7 @@ import 'package:consultation_app/components/my_app_bar.dart';
 import 'package:consultation_app/components/status_list_tile.dart';
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
-
-import '../components/category_list_tile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatusScreen extends StatefulWidget {
   const StatusScreen({Key? key}) : super(key: key);
@@ -13,36 +12,70 @@ class StatusScreen extends StatefulWidget {
 }
 
 class _StatusScreenState extends State<StatusScreen> {
-  final List<StatusListTile> statuses = <StatusListTile>[
-    StatusListTile(title: 'Inbox', color: Colors.red),
-    StatusListTile(title: 'Pending', color: Colors.amber),
-    StatusListTile(title: 'In Progress', color: Colors.blue),
-    StatusListTile(title: 'Completed', color: Colors.green)
-  ];
+  int value = 0;
+  Widget customListTileButton(String text, int index, Color color) {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          value = index;
+        });
+      },
+      title: Text(
+        text,
+      ),
+      leading: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      trailing: (value == index)
+          ? Icon(
+              Icons.check,
+              color: ksecColor,
+            )
+          : SizedBox(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgrondColor,
       appBar: MyAppBar(
-        title: 'Status',
+        title: AppLocalizations.of(context)!.status,
       ),
       body: Container(
-          height: 276,
           margin: EdgeInsets.all(24),
           padding: EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(25),
           ),
-          child: ListView.separated(
-              itemCount: statuses.length,
-              itemBuilder: (BuildContext context, int index) {
-                return statuses[index];
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(
-                    color: Colors.grey,
-                  ))),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              customListTileButton(
+                  AppLocalizations.of(context)!.inbox, 1, Colors.red),
+              const Divider(
+                color: Colors.grey,
+              ),
+              customListTileButton(
+                  AppLocalizations.of(context)!.pending, 2, Colors.amber),
+              const Divider(
+                color: Colors.grey,
+              ),
+              customListTileButton(
+                  AppLocalizations.of(context)!.inProgress, 3, Colors.blue),
+              const Divider(
+                color: Colors.grey,
+              ),
+              customListTileButton(
+                  AppLocalizations.of(context)!.completed, 4, Colors.green)
+            ],
+          )),
     );
   }
 }
