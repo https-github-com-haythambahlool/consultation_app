@@ -7,6 +7,10 @@ import 'package:consultation_app/view/testScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+
+import 'components/foregin.dart';
+
 import 'view/Login_Signup.dart';
 
 void main() {
@@ -30,9 +34,12 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.tajawal().fontFamily,
         primarySwatch: Colors.blue,
       ),
-      // onGenerateRoute: RouteGenerator.getRoute,
-      // initialRoute: Routes.splashRoute,
-      home: Splash(),
+
+
+
+       onGenerateRoute: RouteGenerator.getRoute,
+       initialRoute: Routes.splashRoute,
+
     );
   }
 }

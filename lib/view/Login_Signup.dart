@@ -14,6 +14,7 @@ import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
 import '../constant/const_Api.dart';
 import 'home.dart';
+import 'home.dart';
 
 class Login_Signup extends StatefulWidget {
   const Login_Signup({super.key});
