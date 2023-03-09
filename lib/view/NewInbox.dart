@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
@@ -214,14 +214,14 @@ class _NewInboxState extends State<NewInbox> {
                             style: TextStyle(color: ksecColor, fontSize: 12),
                           ),
                           children: [
-                            SfDateRangePicker(
-                              selectionMode:
-                                  DateRangePickerSelectionMode.single,
-                              initialSelectedRange: PickerDateRange(
-                                  DateTime.now()
-                                      .subtract(const Duration(days: 4)),
-                                  DateTime.now().add(const Duration(days: 3))),
-                            ),
+                            // SfDateRangePicker(
+                            //   selectionMode:
+                            //       DateRangePickerSelectionMode.single,
+                            //   initialSelectedRange: PickerDateRange(
+                            //       DateTime.now()
+                            //           .subtract(const Duration(days: 4)),
+                            //       DateTime.now().add(const Duration(days: 3))),
+                            // ),
                           ]),
                       const Divider(
                         color: Colors.grey,

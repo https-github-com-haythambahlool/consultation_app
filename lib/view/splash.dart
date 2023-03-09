@@ -40,7 +40,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
     return SplashView(
-      done: Done(Login_Signup()),
+      done: Done(LoginSignup()),
       duration: Duration(seconds: 2),
       showStatusBar: true,
       title: AnimatedTextKit(

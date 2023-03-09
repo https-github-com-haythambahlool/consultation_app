@@ -15,14 +15,14 @@ import '../components/AuthScreen/CurvePainter.dart';
 import '../constant/const_Api.dart';
 import 'home.dart';
 
-class Login_Signup extends StatefulWidget {
-  const Login_Signup({super.key});
+class LoginSignup extends StatefulWidget {
+  const LoginSignup({super.key});
 
   @override
-  State<Login_Signup> createState() => _Login_SignupState();
+  State<LoginSignup> createState() => _LoginSignupState();
 }
 
-class _Login_SignupState extends State<Login_Signup> {
+class _LoginSignupState extends State<LoginSignup> {
   Auth auth = Auth();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();

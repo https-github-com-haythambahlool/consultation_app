@@ -1,7 +1,4 @@
 import 'package:consultation_app/constant/const.dart';
-
-import 'package:consultation_app/view/NewInbox.dart';
-
 import 'package:consultation_app/routes_manager.dart';
 
 import 'package:flutter/material.dart';
@@ -26,11 +23,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (BuildContext context) {
-            return NewInbox();
-          }));
-        },
+          Navigator.pushNamed(context, Routes.newInBoxRoute);
+          },
+
         child: Container(
             //  margin: EdgeInsets.all(10),
             padding: const EdgeInsets.all(15),
@@ -92,34 +87,26 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 15,
               ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(top: 10),
-                  filled: true,
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(35),
-                    borderSide: BorderSide(
-                      color: Colors.grey[300]!,
-                      width: 0.5,
-                    ),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, Routes.searchRoute);
+                },
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  // color: Colors.grey.shade400,
+                  width: 378,
+                  height: 48,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(15))
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(35),
-                    borderSide: BorderSide(
-                      color: Colors.grey[300]!,
-                      width: 0.5,
-                    ),
-                  ),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.grey[400]),
-                  prefixIconColor: Colors.grey[400],
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                    child: FaIcon(
-                      FontAwesomeIcons.magnifyingGlass,
-                      size: 17,
-                    ),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.search,color: Color(0xffBEBEBE),),
+                      SizedBox(width: 10),
+                      Text('Serach', style: TextStyle(fontSize: 12,color: Color(0xffBEBEBE)),)
+
+                    ],
                   ),
                 ),
               ),
