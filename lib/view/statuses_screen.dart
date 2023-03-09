@@ -2,6 +2,7 @@ import 'package:consultation_app/components/my_app_bar.dart';
 import 'package:consultation_app/components/status_list_tile.dart';
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatusScreen extends StatefulWidget {
   const StatusScreen({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _StatusScreenState extends State<StatusScreen> {
     return Scaffold(
       backgroundColor: backgrondColor,
       appBar: MyAppBar(
-        title: 'Status',
+        title: AppLocalizations.of(context)!.status,
       ),
       body: Container(
           margin: EdgeInsets.all(24),
@@ -56,19 +57,23 @@ class _StatusScreenState extends State<StatusScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              customListTileButton("Inbox", 1, Colors.red),
+              customListTileButton(
+                  AppLocalizations.of(context)!.inbox, 1, Colors.red),
               const Divider(
                 color: Colors.grey,
               ),
-              customListTileButton("Pending", 2, Colors.amber),
+              customListTileButton(
+                  AppLocalizations.of(context)!.pending, 2, Colors.amber),
               const Divider(
                 color: Colors.grey,
               ),
-              customListTileButton("In Progress", 3, Colors.blue),
+              customListTileButton(
+                  AppLocalizations.of(context)!.inProgress, 3, Colors.blue),
               const Divider(
                 color: Colors.grey,
               ),
-              customListTileButton("Completed", 4, Colors.green)
+              customListTileButton(
+                  AppLocalizations.of(context)!.completed, 4, Colors.green)
             ],
           )),
     );
