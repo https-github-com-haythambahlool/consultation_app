@@ -27,6 +27,7 @@ class StatusCard extends StatelessWidget {
             )
           ]),
       child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

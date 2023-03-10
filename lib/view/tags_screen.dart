@@ -2,8 +2,8 @@ import 'package:consultation_app/components/my_app_bar.dart';
 import 'package:consultation_app/constant/const.dart';
 import 'package:flutter/material.dart';
 
-import '../components/category_list_tile.dart';
 import '../components/homeScreen/Tags.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TagsScreen extends StatefulWidget {
   const TagsScreen({Key? key}) : super(key: key);
@@ -13,29 +13,12 @@ class TagsScreen extends StatefulWidget {
 }
 
 class _TagsScreenState extends State<TagsScreen> {
-  final List<Container> categories = <Container>[
-    Container(
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Text(
-        'Inbox ',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    )
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: backgrondColor,
         appBar: MyAppBar(
-          title: 'Tags',
+          title: AppLocalizations.of(context)!.tags,
         ),
         body: Column(
           children: [
@@ -69,7 +52,7 @@ class _TagsScreenState extends State<TagsScreen> {
                 onChanged: (value) {},
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Add new Tag...',
+                  hintText: AppLocalizations.of(context)!.addNewTag,
                   hintStyle: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,

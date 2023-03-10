@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../constant/const.dart';
 import '../../view/home.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthBtn extends StatelessWidget {
   AuthBtn({super.key, required this.isLogin, required this.onTap});
@@ -19,7 +19,7 @@ class AuthBtn extends StatelessWidget {
         height: 42,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
                 colors: [
@@ -27,11 +27,13 @@ class AuthBtn extends StatelessWidget {
                   ksecColor,
                 ])),
         child: Text(
-          isLogin ? 'تسجيل الدخول' : 'تسجيل',
-          style: TextStyle(
+          isLogin
+              ? AppLocalizations.of(context)!.login
+              : AppLocalizations.of(context)!.signUp,
+          style: const TextStyle(
             color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
+            fontSize: 30,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),

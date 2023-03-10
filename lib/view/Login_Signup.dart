@@ -7,11 +7,15 @@ import 'package:consultation_app/constant/const.dart';
 import 'package:consultation_app/model_view/Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import '../components/AuthScreen/AuthBtn.dart';
 import '../components/AuthScreen/AuthField.dart';
 import '../components/AuthScreen/CurvePainter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../providers/language_provider.dart';
 import '../constant/const_Api.dart';
 import 'home.dart';
 
@@ -44,7 +48,6 @@ class _LoginSignupState extends State<LoginSignup> {
 
   @override
   void initState() {
-
     // TODO: implement initState
     super.initState();
   }
@@ -54,6 +57,14 @@ class _LoginSignupState extends State<LoginSignup> {
     var mysize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: backgrondColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ksecColor,
+        onPressed: () {
+          Provider.of<LanguageProvider>(context, listen: false)
+              .changeLanguage();
+        },
+        child: Icon(Icons.language),
+      ),
       body: Stack(
         children: [
           CustomPaint(
@@ -70,18 +81,15 @@ class _LoginSignupState extends State<LoginSignup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/palestine.png',
-                      width: 75,
+                      'assets/images/logo.jpg',
+                      width: 120,
                     ),
                     Text(
-                      'ديوان رئيس الوزراء',
+                      '',
                       style: GoogleFonts.arefRuqaa(
                         color: Colors.white,
                         fontSize: 25,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
                     ),
                     AnimatedContainer(
                       padding: const EdgeInsets.only(top: 25),
@@ -118,18 +126,16 @@ class _LoginSignupState extends State<LoginSignup> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 25),
                                       child: TextFormField(
-                                          controller: username,
-                                          decoration: inputDecoration.copyWith(
-                                            labelText: 'Name',
-                                            errorText: _isValidateName
-                                                ? errorname
-                                                : null,
-                                          )))
-
-                                  // AuthField(
-                                  //     labelText: 'Name',
-                                  //     controller: username,
-                                  //   )
+                                        controller: username,
+                                        decoration: inputDecoration.copyWith(
+                                          labelText:
+                                              AppLocalizations.of(context)!
+                                                  .name,
+                                          errorText: _isValidateName
+                                              ? errorname
+                                              : null,
+                                        ),
+                                      ))
                                   : const SizedBox(),
                               AnimatedContainer(
                                   duration: Duration(),
@@ -140,7 +146,8 @@ class _LoginSignupState extends State<LoginSignup> {
                                   child: TextFormField(
                                       controller: email,
                                       decoration: inputDecoration.copyWith(
-                                        labelText: 'Email',
+                                        labelText:
+                                            AppLocalizations.of(context)!.email,
                                         errorText: _isValidateEmail
                                             ? errorEmail
                                             : null,
@@ -154,7 +161,8 @@ class _LoginSignupState extends State<LoginSignup> {
                                   child: TextFormField(
                                       controller: password,
                                       decoration: inputDecoration.copyWith(
-                                        labelText: 'Password',
+                                        labelText: AppLocalizations.of(context)!
+                                            .password,
                                         errorText: _isValidatePassword
                                             ? errorPassword
                                             : null,
@@ -169,7 +177,9 @@ class _LoginSignupState extends State<LoginSignup> {
                                       child: TextFormField(
                                           controller: confirPassword,
                                           decoration: inputDecoration.copyWith(
-                                            labelText: 'Confirm Password',
+                                            labelText:
+                                                AppLocalizations.of(context)!
+                                                    .confirmPassword,
                                             errorText: _isValidateConfirm
                                                 ? errorConfirm
                                                 : null,
@@ -191,8 +201,8 @@ class _LoginSignupState extends State<LoginSignup> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              const Text(
-                                'أو',
+                              Text(
+                                AppLocalizations.of(context)!.or,
                                 style: TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -436,10 +446,10 @@ class _LoginSignupState extends State<LoginSignup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل الدخول',
+                    AppLocalizations.of(context)!.login,
                     style: TextStyle(
                       color: isLogin ? Colors.white : kprimColor,
-                      fontSize: 17,
+                      fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -463,7 +473,7 @@ class _LoginSignupState extends State<LoginSignup> {
                     color: Colors.transparent,
                   ),
                   child: Text(
-                    'تسجيل',
+                    AppLocalizations.of(context)!.signUp,
                     style: TextStyle(
                       color: isLogin ? kprimColor : Colors.white,
                       fontSize: 20,
