@@ -1,6 +1,7 @@
 import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/sharedPrefernces/shared_pref_controller.dart';
 import 'package:consultation_app/routes_manager.dart';
+import 'package:consultation_app/view/testScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -46,8 +47,9 @@ class MyMaterialApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(Provider.of<LanguageProvider>(context).language),
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
+      // onGenerateRoute: RouteGenerator.getRoute,
+      // initialRoute: Routes.splashRoute,
+      home: test(),
     );
   }
 }

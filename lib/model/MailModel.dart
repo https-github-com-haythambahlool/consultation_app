@@ -42,7 +42,7 @@ class MailModel {
   Status? status;
   List<int>? tags;
   List<dynamic>? attachments;
-  List<Activities>? activities;
+  List<Activity>? activities;
 
   MailModel.fromJson(Map<String, dynamic> json) {
     print('from json $json');
@@ -67,23 +67,41 @@ class MailModel {
         : null;
     activities = json['activities'] != null
         ? List.from(json['activities'])
-            .map((e) => Activities.fromJson(e))
+            .map((e) => Activity.fromJson(e))
             .toList()
         : null;
   }
-
+  Map<String, dynamic> body = {
+    'subject': 'subject',
+    'description': '',
+    'decision': '',
+    'final_decision': '',
+    'sender_id': '1',
+    'archive_number': '1252',
+    'archive_date': DateTime.now().toString(),
+    'status_id': '1',
+    'tags': jsonEncode([1, 2]),
+    'activities': jsonEncode([
+      {'body': 'any text', 'user_id': 1},
+      {'body': 'any text2', 'user_id': 1}
+    ]),
+  };
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['subject'] = subject;
-    _data['description'] = description;
-    _data['sender_id'] = senderId;
-    _data['archive_number'] = archiveNumber;
-    _data['archive_date'] = archiveDate;
-    _data['decision'] = decision;
-    _data['status_id'] = statusId;
-    _data['final_decision'] = finalDecision;
-    // _data['tags'] = jsonDecode(tags.toString());
-    // _data['activities'] = activities!.map((e) => e.toJson()).toString();
+    _data['subject'] = subject ?? '';
+    _data['description'] = description ?? '';
+    _data['sender_id'] = senderId ?? '';
+    _data['archive_number'] = archiveNumber ?? '';
+    _data['archive_date'] = DateTime.now().toString();
+    _data['decision'] = decision ?? '';
+    _data['status_id'] = statusId ?? '';
+    _data['final_decision'] = finalDecision ?? '';
+    _data['tags'] = jsonEncode(tags);
+    _data['activities'] = jsonEncode([
+      {'body': 'any text', 'user_id': 1},
+      {'body': 'any text2', 'user_id': 1}
+    ]);
+    // jsonEncode(activities!.map((e) => e.toJson()).toList());
     return _data;
   }
 }
