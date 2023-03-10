@@ -89,68 +89,72 @@ class _inProgressState extends State<inProgress> {
                     )
                   ],
                 ),
-                MyExpansion(title: "foreign", mysize: mySize, Contents: [
-                  ListView.builder(
-                      itemCount: list.length,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 20),
-                          padding: EdgeInsets.only(top: 25, left: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.white),
-                          height: 150,
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 5,
-                                    backgroundColor: Colors.blue,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    list[index]["name"]!,
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  SizedBox(
-                                    width: 80,
-                                  ),
-                                  Text(
-                                    list[index]["DateTime"]!,
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right_outlined,
-                                    size: 30,
-                                    color: Colors.grey,
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(list[index]["title"]!),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(list[index]["text2"]!),
-                              ),
-                            ],
-                          ),
-                        );
-                      })
-                ]),
-                MyExpansion(title: "NGOs", mysize: mySize, Contents: [
+                MyExpansion(
+                  title: "foreign",
+                  mySize: mySize,
+                  contents: [
+                    ListView.builder(
+                        itemCount: list.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(vertical: 20),
+                            padding: EdgeInsets.only(top: 25, left: 5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.white),
+                            height: 150,
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 5,
+                                      backgroundColor: Colors.blue,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      list[index]["name"]!,
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    SizedBox(
+                                      width: 80,
+                                    ),
+                                    Text(
+                                      list[index]["DateTime"]!,
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_outlined,
+                                      size: 30,
+                                      color: Colors.grey,
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(list[index]["title"]!),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(list[index]["text2"]!),
+                                ),
+                              ],
+                            ),
+                          );
+                        })
+                  ],
+                ),
+                MyExpansion(title: "NGOs", mySize: mySize, contents: [
                   ListView.builder(
                       itemCount: list2.length,
                       shrinkWrap: true,
@@ -213,8 +217,8 @@ class _inProgressState extends State<inProgress> {
                 ]),
                 MyExpansion(
                     title: "Official Organization",
-                    mysize: mySize,
-                    Contents: [
+                    mySize: mySize,
+                    contents: [
                       ListView.builder(
                           itemCount: list.length,
                           shrinkWrap: true,
@@ -277,7 +281,7 @@ class _inProgressState extends State<inProgress> {
                             );
                           })
                     ]),
-                MyExpansion(title: "Others", mysize: mySize, Contents: [
+                MyExpansion(title: "Others", mySize: mySize, contents: [
                   ListView.builder(
                       itemCount: list.length,
                       shrinkWrap: true,

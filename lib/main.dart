@@ -19,8 +19,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'view/foregin.dart';
 
-import 'components/foregin.dart';
-
 import 'view/Login_Signup.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

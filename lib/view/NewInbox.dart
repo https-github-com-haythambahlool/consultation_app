@@ -114,7 +114,8 @@ class _NewInboxState extends State<NewInbox> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.category,
@@ -123,24 +124,25 @@ class _NewInboxState extends State<NewInbox> {
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(
-                              width: 172,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.other,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            FaIcon(
-                              FontAwesomeIcons.angleRight,
-                              color: Colors.grey,
-                              size: 20,
-                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.other,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                FaIcon(
+                                  FontAwesomeIcons.angleRight,
+                                  color: Colors.grey,
+                                  size: 20,
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
