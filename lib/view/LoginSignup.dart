@@ -417,7 +417,7 @@ class _LoginSignupState extends State<LoginSignup> {
               width: 130,
               height: 35,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
                       colors: [
@@ -430,6 +430,7 @@ class _LoginSignupState extends State<LoginSignup> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            textDirection: TextDirection.ltr,
             children: [
               GestureDetector(
                 onTap: () {
@@ -449,7 +450,7 @@ class _LoginSignupState extends State<LoginSignup> {
                     AppLocalizations.of(context)!.login,
                     style: TextStyle(
                       color: isLogin ? Colors.white : kprimColor,
-                      fontSize: 22,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
