@@ -1,4 +1,4 @@
-import 'package:consultation_app/view/Login_Signup.dart';
+import 'package:consultation_app/view/LoginSignup.dart';
 import 'package:consultation_app/view/NewInbox.dart';
 import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/category_screen.dart';

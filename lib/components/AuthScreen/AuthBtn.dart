@@ -32,7 +32,7 @@ class AuthBtn extends StatelessWidget {
               : AppLocalizations.of(context)!.signUp,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 30,
+            fontSize: 25,
             fontWeight: FontWeight.w700,
           ),
         ),

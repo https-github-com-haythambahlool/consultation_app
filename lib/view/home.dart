@@ -40,13 +40,13 @@ class _HomeState extends State<Home> {
               children: [
                 Icon(
                   Icons.add_circle,
-                  color: Colors.blue,
+                  color: kprimColor,
                   size: 30,
                 ),
                 Text(
                   AppLocalizations.of(context)!.newInbox,
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: kprimColor,
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
                   ),
