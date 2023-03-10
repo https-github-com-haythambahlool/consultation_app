@@ -271,25 +271,27 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.hashtag,
-                        color: Colors.grey[600],
-                        size: 25,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.tags,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 258,
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.hashtag,
+                            color: Colors.grey[600],
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.tags,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                       ),
                       FaIcon(
                         FontAwesomeIcons.angleRight,
@@ -317,36 +319,38 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.tag,
-                        color: Colors.grey[600],
-                        size: 25,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Text(
-                          AppLocalizations.of(context)!.inbox,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.tag,
+                            color: Colors.grey[600],
+                            size: 25,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                        width: 220,
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.inbox,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
                       ),
                       FaIcon(
                         FontAwesomeIcons.angleRight,
