@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
@@ -114,7 +114,8 @@ class _NewInboxState extends State<NewInbox> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.category,
@@ -123,24 +124,25 @@ class _NewInboxState extends State<NewInbox> {
                                 fontSize: 18,
                               ),
                             ),
-                            SizedBox(
-                              width: 172,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.other,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            FaIcon(
-                              FontAwesomeIcons.angleRight,
-                              color: Colors.grey,
-                              size: 20,
-                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.other,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                FaIcon(
+                                  FontAwesomeIcons.angleRight,
+                                  color: Colors.grey,
+                                  size: 20,
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -217,14 +219,14 @@ class _NewInboxState extends State<NewInbox> {
                             style: TextStyle(color: ksecColor, fontSize: 12),
                           ),
                           children: [
-                            SfDateRangePicker(
-                              selectionMode:
-                                  DateRangePickerSelectionMode.single,
-                              initialSelectedRange: PickerDateRange(
-                                  DateTime.now()
-                                      .subtract(const Duration(days: 4)),
-                                  DateTime.now().add(const Duration(days: 3))),
-                            ),
+                            // SfDateRangePicker(
+                            //   selectionMode:
+                            //       DateRangePickerSelectionMode.single,
+                            //   initialSelectedRange: PickerDateRange(
+                            //       DateTime.now()
+                            //           .subtract(const Duration(days: 4)),
+                            //       DateTime.now().add(const Duration(days: 3))),
+                            // ),
                           ]),
                       const Divider(
                         color: Colors.grey,
@@ -269,25 +271,27 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.hashtag,
-                        color: Colors.grey[600],
-                        size: 25,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.tags,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 258,
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.hashtag,
+                            color: Colors.grey[600],
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.tags,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                       ),
                       FaIcon(
                         FontAwesomeIcons.angleRight,
@@ -315,36 +319,38 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FaIcon(
-                        FontAwesomeIcons.tag,
-                        color: Colors.grey[600],
-                        size: 25,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Text(
-                          AppLocalizations.of(context)!.inbox,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.tag,
+                            color: Colors.grey[600],
+                            size: 25,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                        width: 220,
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.inbox,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
                       ),
                       FaIcon(
                         FontAwesomeIcons.angleRight,

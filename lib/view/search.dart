@@ -30,7 +30,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     size: 24,
                     color: Color(0xFF6589FF),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 const Text(
                   "Home",

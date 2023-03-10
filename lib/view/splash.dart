@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:consultation_app/view/Login_Signup.dart';
+import 'package:consultation_app/view/LoginSignup.dart';
 import 'package:consultation_app/view/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -40,6 +40,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
+
     return newSplash();
   }
 }

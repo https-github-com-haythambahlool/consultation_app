@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../components/category_list_tile.dart';
 import '../components/status_list_tile.dart';
@@ -119,14 +119,14 @@ class _FilterScreenState extends State<FilterScreen> {
                 style: TextStyle(color: ksecColor, fontSize: 12),
               ),
               children: [
-                SfDateRangePicker(
-                  selectionMode:
-                  DateRangePickerSelectionMode.single,
-                  initialSelectedRange: PickerDateRange(
-                      DateTime.now()
-                          .subtract(const Duration(days: 4)),
-                      DateTime.now().add(const Duration(days: 3))),
-                ),
+                // SfDateRangePicker(
+                //   selectionMode:
+                //   DateRangePickerSelectionMode.single,
+                //   initialSelectedRange: PickerDateRange(
+                //       DateTime.now()
+                //           .subtract(const Duration(days: 4)),
+                //       DateTime.now().add(const Duration(days: 3))),
+                // ),
               ]),
         ],
       ),

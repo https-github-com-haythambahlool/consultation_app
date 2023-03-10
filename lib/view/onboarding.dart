@@ -1,5 +1,5 @@
 import 'package:consultation_app/constant/const.dart';
-import 'package:consultation_app/view/Login_Signup.dart';
+import 'package:consultation_app/view/LoginSignup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -67,7 +67,7 @@ class _onBoardingState extends State<onBoarding> {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext context) {
-                    return const Login_Signup();
+                    return const LoginSignup();
                   }));
                 },
                 child: Container(

@@ -2,6 +2,8 @@ import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../routes_manager.dart';
+
 class OrganizationCard extends StatelessWidget {
   OrganizationCard({
     super.key,
@@ -26,10 +28,7 @@ class OrganizationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return OfficialOrganization();
-        }));
+       Navigator.pushNamed(context, Routes.detailsRoute);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),

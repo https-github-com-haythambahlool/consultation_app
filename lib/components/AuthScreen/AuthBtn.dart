@@ -19,7 +19,7 @@ class AuthBtn extends StatelessWidget {
         height: 42,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
                 colors: [
@@ -28,12 +28,12 @@ class AuthBtn extends StatelessWidget {
                 ])),
         child: Text(
           isLogin
-              ? AppLocalizations.of(context)!.signUp
-              : AppLocalizations.of(context)!.login,
-          style: TextStyle(
+              ? AppLocalizations.of(context)!.login
+              : AppLocalizations.of(context)!.signUp,
+          style: const TextStyle(
             color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),
