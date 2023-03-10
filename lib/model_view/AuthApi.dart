@@ -1,9 +1,5 @@
 import 'dart:convert';
-import 'package:consultation_app/components/homeScreen/Tags.dart';
 import 'package:consultation_app/constant/const_Api.dart';
-import 'package:consultation_app/model/CategoryModel.dart';
-import 'package:consultation_app/model/MailModel.dart';
-import 'package:consultation_app/model/MailsModel.dart';
 import 'package:consultation_app/model/TagsModel.dart';
 import 'package:consultation_app/model/userModel.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +12,6 @@ class Auth extends ChangeNotifier {
   Map errorMessage = {};
   List<User> users = [];
 
-  CategoryModel? categoryModel;
-  Category? category;
-  TagModel? tagsModel;
   Future<bool> login(String _email, String _password) async {
     http.Response response = await http.post(Uri.parse(loginUrl), body: {
       'email': _email,
@@ -160,73 +153,15 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  Future changeRole() async {
+  Future changeRole(roleId) async {
     http.Response response = await http.put(Uri.parse(changeRoleUrl(user!.id!)),
         headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'role_id': '2'});
-    print('role from : ${response.body}');
-  }
-
-  Future getAllCategories() async {
-    http.Response response = await http.get(Uri.parse(getAllcategoriesUrl),
-        headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print("getAllCategories : ${response.body}");
-  }
-
-  Future getSingleCategores() async {
-    http.Response response = await http.get(
-        Uri.parse(getSinglecategoriesUrl(2)),
-        headers: {'Authorization': 'Bearer ${token!.token!}'});
+        body: {'role_id': roleId});
     if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      categoryModel = CategoryModel.fromJson(body);
-      print('success data');
+      return 'Success';
+    } else {
+      return 'error!!';
     }
-  }
-
-  Future createCategories() async {
-    http.Response response = await http.post(Uri.parse(createCategoriesUrl),
-        headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'name': 'Som3a'});
-    print("Create Categories:${response.body}");
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      category = Category.fromJson(body['category']);
-      print('success');
-    }
-  }
-
-  Future getAlltags() async {
-    http.Response response = await http.get(
-      Uri.parse(getAlltagsUrl),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    if (response.statusCode == 200) {
-      var body = jsonDecode(response.body);
-      tagsModel = TagModel.fromJson(body);
-    }
-    print(response.body);
-  }
-
-  Future getAlltagsWithMail() async {
-    http.Response response = await http.get(
-      Uri.parse(getAlltagsWithMailUrl([1, 2])),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    print(response.body);
-  }
-
-  Future getAlltagsOfMail() async {
-    http.Response response = await http.get(Uri.parse(getAlltagsWithIdUrl(13)),
-        headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print(response.body);
-  }
-
-  Future createtags() async {
-    http.Response response = await http.post(Uri.parse(createtagsUrl),
-        headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'name': "ahmed"});
-    print(response.body);
   }
 
   Future getALlStatus() async {

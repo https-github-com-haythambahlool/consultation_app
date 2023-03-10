@@ -12,8 +12,8 @@ class Activity {
   });
   int? id;
   String? body;
-  int? userId;
-  int? mailId;
+  String? userId;
+  String? mailId;
   String? sendNumber;
   String? sendDate;
   String? sendDestination;

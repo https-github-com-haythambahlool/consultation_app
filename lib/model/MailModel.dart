@@ -45,7 +45,6 @@ class MailModel {
   List<Activity>? activities;
 
   MailModel.fromJson(Map<String, dynamic> json) {
-    print('from json $json');
     id = json['id'];
     subject = json['subject'];
     description = json['description'];
