@@ -349,7 +349,6 @@ class Auth extends ChangeNotifier {
     print(response.body);
   }
 
-//  body لل image مش عارف شو احط
   Future updateSenders() async {
     http.Response response =
         await http.put(Uri.parse(updateSendersUrl(user!.id!)), headers: {
