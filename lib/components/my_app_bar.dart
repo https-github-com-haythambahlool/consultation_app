@@ -30,7 +30,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               fontSize: 20,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       actions: [

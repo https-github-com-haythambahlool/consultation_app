@@ -10,30 +10,32 @@ class AddImageCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            Icons.remove_circle,
-            color: Colors.red,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image(
-                width: 35,
-                height: 35,
-                image: AssetImage(
-                  image,
+          Row(
+            children: [
+              Icon(
+                Icons.remove_circle,
+                color: Colors.red,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image(
+                    width: 35,
+                    height: 35,
+                    image: AssetImage(
+                      image,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Text(
-            name,
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            width: 150,
+              Text(
+                name,
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
           ),
           FaIcon(
             FontAwesomeIcons.gripLines,

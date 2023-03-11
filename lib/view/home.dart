@@ -37,6 +37,8 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(15),
             decoration: const BoxDecoration(color: Colors.white),
             child: Row(
+              textBaseline: TextBaseline.alphabetic,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(
                   Icons.add_circle,
@@ -62,7 +64,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.searchRoute);
+              //Navigator.pushNamed(context, Routes.searchRoute);
             },
             icon:
                 const Icon(FontAwesomeIcons.barsStaggered, color: Colors.black),
@@ -113,14 +115,14 @@ class _HomeState extends State<Home> {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.search,
                         color: Color(0xffBEBEBE),
                       ),
                       SizedBox(width: 10),
                       Text(
-                        'Serach',
+                        AppLocalizations.of(context)!.search,
                         style:
                             TextStyle(fontSize: 12, color: Color(0xffBEBEBE)),
                       )
@@ -233,7 +235,7 @@ class _HomeState extends State<Home> {
                 ],
                 title: AppLocalizations.of(context)!.other),
             Padding(
-              padding: EdgeInsets.only(top: 25, left: 15),
+              padding: EdgeInsets.only(top: 25, left: 15, right: 15),
               child: Text(
                 AppLocalizations.of(context)!.tags,
                 style: Theme.of(context).textTheme.headline6,
