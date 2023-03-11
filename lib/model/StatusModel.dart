@@ -1,17 +1,26 @@
+import 'package:consultation_app/model/MailModel.dart';
+import 'package:consultation_app/model/MailsModel.dart';
+
 class Status {
-  Status({
-    required this.id,
-    required this.name,
-    required this.color,
-  });
-  late final int id;
-  late final String name;
-  late final String color;
+  Status({this.id, this.name, this.color});
+  int? id;
+  String? name;
+  String? color;
+  List<MailModel> mails = [];
+  String? mailsCount;
 
   Status.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     color = json['color'];
+    if (json['mails'] != null) {
+      for (var mail in json['mails']) {
+        var mailmodel = MailModel.fromJson(mail);
+
+        mails.add(mailmodel);
+      }
+    }
+    mailsCount = json['mails_count'];
   }
 
   Map<String, dynamic> toJson() {

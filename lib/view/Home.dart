@@ -1,11 +1,7 @@
 import 'package:consultation_app/constant/const.dart';
-
 import 'package:consultation_app/providers/language_provider.dart';
-
 import 'package:consultation_app/view/NewInbox.dart';
-
 import 'package:consultation_app/routes_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +29,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: IconButton(
+        color: kprimColor,
+        icon: Icon(Icons.sunny),
+        onPressed: () {},
+      ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, Routes.newInBoxRoute);

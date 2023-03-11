@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:consultation_app/components/MySnackbar.dart';
 import 'package:consultation_app/constant/const.dart';
-import 'package:consultation_app/model_view/Auth.dart';
+import 'package:consultation_app/model_view/AuthApi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -84,9 +84,12 @@ class _LoginSignupState extends State<LoginSignup> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo.jpg',
-                      width: 120,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100),
+                      child: Image.asset(
+                        'assets/images/logo.jpg',
+                        width: 120,
+                      ),
                     ),
                     Text(
                       '',
