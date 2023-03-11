@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:consultation_app/model/userModel.dart';
 import 'package:consultation_app/model_view/AuthApi.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../constant/const_Api.dart';
 import '../model/MailModel.dart';
 import '../model/MailsModel.dart';
 
-class MailsApi {
+class MailsApi extends ChangeNotifier {
   MailModel? mail;
   MailsModel? allMails;
   Auth auth = Auth();

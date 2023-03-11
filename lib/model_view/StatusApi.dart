@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:consultation_app/model/StatusModel.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../constant/const_Api.dart';
 
-class StatusApi {
+class StatusApi extends ChangeNotifier {
   Status statusModel = Status();
   List<Status> allStatus = [];
   Future getAllStatus(token, bool withMail) async {

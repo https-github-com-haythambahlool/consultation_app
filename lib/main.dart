@@ -1,6 +1,14 @@
+import 'package:consultation_app/model/MailsModel.dart';
+import 'package:consultation_app/model_view/CategoriesApi.dart';
+import 'package:consultation_app/model_view/MailsApi.dart';
+import 'package:consultation_app/model_view/SenderApi.dart';
+import 'package:consultation_app/model_view/StatusApi.dart';
+import 'package:consultation_app/model_view/TagsApi.dart';
 import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/sharedPrefernces/shared_pref_controller.dart';
 import 'package:consultation_app/routes_manager.dart';
+import 'package:consultation_app/view/Home.dart';
+import 'package:consultation_app/view/LoginSignup.dart';
 import 'package:consultation_app/view/testScreen.dart';
 import 'package:consultation_app/view/testShimmer.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +17,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'Shimmer/shimmerListTile.dart';
+import 'model_view/AuthApi.dart';
 
 void main() async {
   WidgetsFlutterBinding
@@ -25,20 +33,30 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: testShimer(),
-    );
-    //
-    //   MultiProvider(providers: [
-    //   ChangeNotifierProvider<LanguageProvider>(
-    //       create: (context) => LanguageProvider())
-    // ], child:
-    //
-    //      MyMaterialApp()
-    //     );
+    return MultiProvider(providers: [
+      ChangeNotifierProvider<Auth>(
+        create: (BuildContext context) => Auth(),
+      ),
+      ChangeNotifierProvider<CategoriesApi>(
+        create: (BuildContext context) => CategoriesApi(),
+      ),
+      ChangeNotifierProvider<MailsApi>(
+        create: (BuildContext context) => MailsApi(),
+      ),
+      ChangeNotifierProvider<SenderApi>(
+        create: (BuildContext context) => SenderApi(),
+      ),
+      ChangeNotifierProvider<StatusApi>(
+        create: (BuildContext context) => StatusApi(),
+      ),
+      ChangeNotifierProvider<TagsApi>(
+        create: (BuildContext context) => TagsApi(),
+      ),
+      ChangeNotifierProvider<LanguageProvider>(
+          create: (context) => LanguageProvider())
+    ], child: MyMaterialApp());
   }
 }
 
@@ -57,8 +75,9 @@ class MyMaterialApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(Provider.of<LanguageProvider>(context).language),
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
+      // onGenerateRoute: RouteGenerator.getRoute,
+      // initialRoute: Routes.splashRoute,
+      home: LoginSignup(),
     );
   }
 }

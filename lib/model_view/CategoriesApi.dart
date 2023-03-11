@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:consultation_app/model_view/AuthApi.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../constant/const_Api.dart';
 import '../model/CategoryModel.dart';
 
-class CategoriesApi {
+class CategoriesApi extends ChangeNotifier {
   CategoryModel? categoryModel;
   Category? category;
   List<Category> allCategories = [];
