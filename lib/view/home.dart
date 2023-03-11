@@ -35,337 +35,306 @@ class _HomeState extends State<Home> {
     Size mysize = MediaQuery.of(context).size;
 
     var auth = Provider.of<Auth>(context);
-    var status = Provider.of<StatusApi>(context);
+    // var status = Provider.of<StatusApi>(context);
     var category = Provider.of<CategoriesApi>(context);
     var tags = Provider.of<TagsApi>(context);
-    status.getAllStatus(auth.token!.token, true);
+    // status.getAllStatus(auth.token!.token, true);
     category.getAllCategories(auth.token!.token);
     tags.getAlltags(auth.token!.token);
 
-    return isLoading
-        ? const testShimer()
-        : Scaffold(
-            bottomNavigationBar: GestureDetector(
-  
-        onTap: () {
-          Navigator.pushNamed(context, Routes.newInBoxRoute);
-        },
-        child: Container(
-            //  margin: EdgeInsets.all(10),
-            padding: const EdgeInsets.all(15),
-            decoration: const BoxDecoration(color: Colors.white),
-            child: Row(
-              textBaseline: TextBaseline.alphabetic,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.add_circle,
-                  color: kprimColor,
-                  size: 30,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.newInbox,
-                  style: TextStyle(
-                    color: kprimColor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
-            )),
-      ),
-      backgroundColor: backgrondColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: IconButton(
-            onPressed: () {
-              //Navigator.pushNamed(context, Routes.searchRoute);
-            },
-            icon:
-                const Icon(FontAwesomeIcons.barsStaggered, color: Colors.black),
-            // FontAwesomeIcons.barsStaggered,
-            // color: Colors.black,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: GestureDetector(
-
-              onTap: () {
-                Navigator.pushNamed(context, Routes.newInBoxRoute);
-              },
-              child: Container(
-                  //  margin: EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(15),
-                  decoration: const BoxDecoration(color: Colors.white),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                      color: kprimColor,
-
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.search,
-                        style:
-                            TextStyle(fontSize: 12, color: kprimColor),
-
-                      )
-                    ],
-                  )),
-            ),
-            backgroundColor: backgrondColor,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              leading: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, Routes.searchRoute);
+    return // status.isLoading &&
+        category.isLoading && tags.isLoading
+            ? const testShimer()
+            : Scaffold(
+                bottomNavigationBar: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.newInBoxRoute);
                   },
-                  icon: const Icon(FontAwesomeIcons.barsStaggered,
-                      color: Colors.black),
-                  // FontAwesomeIcons.barsStaggered,
-                  // color: Colors.black,
+                  child: Container(
+                      //  margin: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(15),
+                      decoration: const BoxDecoration(color: Colors.white),
+                      child: Row(
+                        textBaseline: TextBaseline.alphabetic,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.add_circle,
+                            color: kprimColor,
+                            size: 30,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.newInbox,
+                            style: TextStyle(
+                              color: kprimColor,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      )),
                 ),
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Provider.of<LanguageProvider>(context, listen: false)
-                      //     .changeLanguage();
-                    },
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 23,
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.white,
-                        backgroundImage: AssetImage('assets/images/1.jpg'),
+                backgroundColor: backgrondColor,
+                appBar: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
+                    leading: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: IconButton(
+                        onPressed: () {
+                          //Navigator.pushNamed(context, Routes.searchRoute);
+                        },
+                        icon: const Icon(FontAwesomeIcons.barsStaggered,
+                            color: Colors.black),
+                        // FontAwesomeIcons.barsStaggered,
+                        // color: Colors.black,
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 40,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, Routes.searchRoute);
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(2),
-                        // color: Colors.grey.shade400,
-                        width: 378,
-                        height: 48,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.search,
-                              color: Color(0xffBEBEBE),
+                    actions: [
+                      Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, Routes.newInBoxRoute);
+                            },
+                            child: Container(
+                                //  margin: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(15),
+                                decoration:
+                                    const BoxDecoration(color: Colors.white),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.search,
+                                      color: kprimColor,
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.search,
+                                      style: TextStyle(
+                                          fontSize: 12, color: kprimColor),
+                                    )
+                                  ],
+                                )),
+                          ))
+                    ]),
+                body: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 40,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.searchRoute);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(2),
+                            // color: Colors.grey.shade400,
+                            width: 378,
+                            height: 48,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.search,
+                                  color: Color(0xffBEBEBE),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  'Serach',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Color(0xffBEBEBE)),
+                                )
+                              ],
                             ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Serach',
-                              style: TextStyle(
-                                  fontSize: 12, color: Color(0xffBEBEBE)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                StatusCard(
+                                    circleColor: Colors.red,
+                                    num: '',
+                                    // status.allStatus[0].mailsCount ?? '',
+                                    statusName:
+                                        AppLocalizations.of(context)!.inbox),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                StatusCard(
+                                    circleColor: Colors.blue,
+                                    num: '',
+                                    // status.allStatus[3].mailsCount ?? '',
+                                    statusName: AppLocalizations.of(context)!
+                                        .inProgress)
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                StatusCard(
+                                    circleColor: Colors.yellow,
+                                    num: '',
+                                    // status.allStatus[1].mailsCount ?? '',
+                                    statusName:
+                                        AppLocalizations.of(context)!.pending),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                StatusCard(
+                                    circleColor: Colors.green,
+                                    num: '',
+                                    //status.allStatus[2].mailsCount ?? '',
+                                    statusName:
+                                        AppLocalizations.of(context)!.completed)
+                              ],
                             )
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            StatusCard(
-                                circleColor: Colors.red,
-                                num: 9,
-                                statusName:
-                                    AppLocalizations.of(context)!.inbox),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            StatusCard(
-                                circleColor: Colors.blue,
-                                num: 9,
-                                statusName:
-                                    AppLocalizations.of(context)!.inProgress)
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            StatusCard(
-                                circleColor: Colors.yellow,
-                                num: 9,
-                                statusName:
-                                    AppLocalizations.of(context)!.pending),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            StatusCard(
-                                circleColor: Colors.green,
-                                num: 9,
-                                statusName:
-                                    AppLocalizations.of(context)!.completed)
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  MyExpansion(
-                    mySize: mysize,
-                    contents: [
-                      OrganizationCard(
-                        mysize: mysize,
-                        email:
-                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                        hash: '#Urgent # Egyptian Military',
-                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
-                        orgName: 'Oraganization Name',
-                        subjectName: 'Here we add the subject',
-                        time: 'Today, 11:00 AM',
-                      ),
-                      OrganizationCard(
-                        mysize: mysize,
-                        email:
-                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                        hash: '#Urgent # Egyptian Military',
-                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
-                        orgName: 'Oraganization Name',
-                        subjectName: 'Here we add the subject',
-                        time: 'Today, 11:00 AM',
-                      )
-                    ],
-                    title: AppLocalizations.of(context)!.officialOrganization,
-                  ),
-                  MyExpansion(
-                      mySize: mysize,
-                      contents: [],
-                      title: AppLocalizations.of(context)!.ngos),
-                  MyExpansion(
-                      mySize: mysize,
-                      contents: [
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            children: [
-                              OthersCard(
-                                color: Colors.red,
-                                email:
-                                    'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                                orgName: 'Oraganization Name',
-                                subjectName: 'Here we add the subject',
-                                time: 'Today, 11:00 AM',
-                              ),
-                              OthersCard(
-                                color: Colors.yellow,
-                                email:
-                                    'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                                orgName: 'Oraganization Name',
-                                subjectName: 'Here we add the subject',
-                                time: 'Today, 11:00 AM',
-                              ),
+                      MyExpansion(
+                        mySize: mysize,
+                        contents: [
+                          OrganizationCard(
+                            mysize: mysize,
+                            email:
+                                'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                            hash: '#Urgent # Egyptian Military',
+                            images: [
+                              'assets/images/1.jpg',
+                              'assets/images/2.png'
                             ],
+                            orgName: 'Oraganization Name',
+                            subjectName: 'Here we add the subject',
+                            time: 'Today, 11:00 AM',
                           ),
+                          OrganizationCard(
+                            mysize: mysize,
+                            email:
+                                'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                            hash: '#Urgent # Egyptian Military',
+                            images: [
+                              'assets/images/1.jpg',
+                              'assets/images/2.png'
+                            ],
+                            orgName: 'Oraganization Name',
+                            subjectName: 'Here we add the subject',
+                            time: 'Today, 11:00 AM',
+                          )
+                        ],
+                        title:
+                            AppLocalizations.of(context)!.officialOrganization,
+                      ),
+                      MyExpansion(
+                          mySize: mysize,
+                          contents: [],
+                          title: AppLocalizations.of(context)!.ngos),
+                      MyExpansion(
+                          mySize: mysize,
+                          contents: [
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                children: [
+                                  OthersCard(
+                                    color: Colors.red,
+                                    email:
+                                        'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                                    orgName: 'Oraganization Name',
+                                    subjectName: 'Here we add the subject',
+                                    time: 'Today, 11:00 AM',
+                                  ),
+                                  OthersCard(
+                                    color: Colors.yellow,
+                                    email:
+                                        'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                                    orgName: 'Oraganization Name',
+                                    subjectName: 'Here we add the subject',
+                                    time: 'Today, 11:00 AM',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                          title: AppLocalizations.of(context)!.other),
+                      Padding(
+                        padding: EdgeInsets.only(top: 25, left: 15),
+                        child: Text(
+                          AppLocalizations.of(context)!.tags,
+                          style: Theme.of(context).textTheme.headline6,
                         ),
-                      ],
-                      title: AppLocalizations.of(context)!.other),
-                  Padding(
-                    padding: EdgeInsets.only(top: 25, left: 15),
-                    child: Text(
-                      AppLocalizations.of(context)!.tags,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 15,
-                    ),
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      left: 10,
-                      right: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Tags(
-                      tags: const [
-                        'All Tags',
-                        '#Urgant',
-                        '#Egytian Military',
-                        '#New',
-                      ],
-                    ),
-                  ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 15,
+                        ),
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Tags(
+                          tags: List<String>.generate(tags.allTags.length,
+                              (index) {
+                            return tags.allTags[index].name;
+                          }),
+                        ),
+                      ),
 
-                ],
-                title: AppLocalizations.of(context)!.other),
-            Padding(
-              padding: EdgeInsets.only(top: 25, left: 15, right: 15),
-              child: Text(
-                AppLocalizations.of(context)!.tags,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 15,
-              ),
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 10,
-                right: 10,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Tags(
-                tags: const [
-                  'All Tags',
-                  '#Urgant',
-                  '#Egytian Military',
-                  '#New',
-
-                ],
-              ),
-            ),
-          );
+                      //     title: AppLocalizations.of(context)!.other),
+                      // Padding(
+                      //   padding: EdgeInsets.only(top: 25, left: 15, right: 15),
+                      //   child: Text(
+                      //     AppLocalizations.of(context)!.tags,
+                      //     style: Theme.of(context).textTheme.headline6,
+                      //   ),
+                      // ),
+                      // Container(
+                      //   margin: const EdgeInsets.symmetric(
+                      //     horizontal: 15,
+                      //     vertical: 15,
+                      //   ),
+                      //   padding: const EdgeInsets.only(
+                      //     top: 10,
+                      //     left: 10,
+                      //     right: 10,
+                      //   ),
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     borderRadius: BorderRadius.circular(25),
+                      //   ),
+                      //   child: Tags(
+                      //     tags: const [
+                      //       'All Tags',
+                      //       '#Urgant',
+                      //       '#Egytian Military',
+                      //       '#New',
+                    ],
+                  ),
+                ));
   }
 }

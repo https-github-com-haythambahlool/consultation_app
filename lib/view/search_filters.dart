@@ -67,7 +67,7 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgrondColor,
-      appBar: MyAppBar(title: AppLocalizations.of(context)!.filter),
+      appBar: MyAppBar(title: 'AppLocalizations.of(context)!.filter'),
       body: SingleChildScrollView(
         child: Container(
           child: Column(

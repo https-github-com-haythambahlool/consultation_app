@@ -64,6 +64,7 @@ class _LoginSignupState extends State<LoginSignup> {
     var mysize = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: backgrondColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: ksecColor,

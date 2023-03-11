@@ -42,7 +42,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                 },
               ),
               Text(
-                AppLocalizations.of(context)!.emailDetails,
+                'AppLocalizations.of(context)!.emailDetails',
                 style: TextStyle(
                   color: kprimColor,
                   fontSize: 20,

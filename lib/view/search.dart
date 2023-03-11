@@ -97,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         style: TextStyle(color: Color(0xff7C7C7C))),
                     TextButton(
                         onPressed: () {},
-                        child: Text(AppLocalizations.of(context)!.show))
+                        child: Text('AppLocalizations.of(context)!.show'))
                   ],
                 ),
               ),
@@ -112,7 +112,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     Text(AppLocalizations.of(context)!.officialOrganization,
                         style: TextStyle(color: Color(0xff7C7C7C))),
-                    Text('1 ${AppLocalizations.of(context)!.found} ',
+                    Text('1 {AppLocalizations.of(context)!.found} ',
                         style: TextStyle(color: Color(0xff7C7C7C))),
                   ],
                 ),
@@ -136,7 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     Text(AppLocalizations.of(context)!.other,
                         style: TextStyle(color: Color(0xff7C7C7C))),
-                    Text('2 ${AppLocalizations.of(context)!.found} ',
+                    Text('2 {AppLocalizations.of(context)!.found} ',
                         style: TextStyle(color: Color(0xff7C7C7C))),
                   ],
                 ),
