@@ -1,5 +1,6 @@
 import 'package:consultation_app/constant/const.dart';
 import 'package:consultation_app/model_view/AuthApi.dart';
+import 'package:consultation_app/model_view/TagsApi.dart';
 import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/view/NewInbox.dart';
 import 'package:consultation_app/routes_manager.dart';
@@ -25,279 +26,267 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool IconBool = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  bool isLoading = true;
 
   // IconData iconLight = Icon(Icons.wb_sunny) as IconData;
   // IconData iconDark = Icon(Icons.nights_stay) as IconData;
   @override
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
-    return Consumer<Auth>(builder: (context, auth, child) {
-      StatusApi status = StatusApi();
-      CategoriesApi categories = CategoriesApi();
-      auth.getUser().then((value) {
-        status.getAllStatus(auth.token!.token, true);
-        categories.getAllCategories(auth.token!.token);
-      });
+    var auth = Provider.of<Auth>(context);
+    var status = Provider.of<StatusApi>(context);
+    var category = Provider.of<CategoriesApi>(context);
+    var tags = Provider.of<TagsApi>(context);
+    status.getAllStatus(auth.token!.token, true);
+    category.getAllCategories(auth.token!.token);
+    tags.getAlltags(auth.token!.token);
 
-      return auth.isLoading
-          ? const testShimer()
-          : Scaffold(
-              bottomNavigationBar: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.newInBoxRoute);
-                },
-                child: Container(
-                    //  margin: EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(15),
-                    decoration: const BoxDecoration(color: Colors.white),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.add_circle,
+    return isLoading
+        ? const testShimer()
+        : Scaffold(
+            bottomNavigationBar: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.newInBoxRoute);
+              },
+              child: Container(
+                  //  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.add_circle,
+                        color: kprimColor,
+                        size: 30,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.newInbox,
+                        style: const TextStyle(
                           color: kprimColor,
-                          size: 30,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.newInbox,
-                          style: const TextStyle(
-                            color: kprimColor,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    )),
-              ),
-              backgroundColor: backgrondColor,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0.0,
-                leading: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.searchRoute);
-                    },
-                    icon: const Icon(FontAwesomeIcons.barsStaggered,
-                        color: Colors.black),
-                    // FontAwesomeIcons.barsStaggered,
-                    // color: Colors.black,
-                  ),
+                      )
+                    ],
+                  )),
+            ),
+            backgroundColor: backgrondColor,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              leading: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.searchRoute);
+                  },
+                  icon: const Icon(FontAwesomeIcons.barsStaggered,
+                      color: Colors.black),
+                  // FontAwesomeIcons.barsStaggered,
+                  // color: Colors.black,
                 ),
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Provider.of<LanguageProvider>(context, listen: false)
+                      //     .changeLanguage();
+                    },
+                    child: const CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 23,
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage('assets/images/1.jpg'),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 40,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
                     child: GestureDetector(
                       onTap: () {
-                        // Provider.of<LanguageProvider>(context, listen: false)
-                        //     .changeLanguage();
+                        Navigator.pushNamed(context, Routes.searchRoute);
                       },
-                      child: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 23,
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/images/1.jpg'),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              body: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 40,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, Routes.searchRoute);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.all(2),
-                          // color: Colors.grey.shade400,
-                          width: 378,
-                          height: 48,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.search,
-                                color: Color(0xffBEBEBE),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Serach',
-                                style: TextStyle(
-                                    fontSize: 12, color: Color(0xffBEBEBE)),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              StatusCard(
-                                  circleColor: Colors.red,
-                                  num: 9,
-                                  statusName:
-                                      AppLocalizations.of(context)!.inbox),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              StatusCard(
-                                  circleColor: Colors.blue,
-                                  num: 9,
-                                  statusName:
-                                      AppLocalizations.of(context)!.inProgress)
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              StatusCard(
-                                  circleColor: Colors.yellow,
-                                  num: 9,
-                                  statusName:
-                                      AppLocalizations.of(context)!.pending),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              StatusCard(
-                                  circleColor: Colors.green,
-                                  num: 9,
-                                  statusName:
-                                      AppLocalizations.of(context)!.completed)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    MyExpansion(
-                      mySize: mysize,
-                      contents: [
-                        OrganizationCard(
-                          mysize: mysize,
-                          email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                          hash: '#Urgent # Egyptian Military',
-                          images: [
-                            'assets/images/1.jpg',
-                            'assets/images/2.png'
+                      child: Container(
+                        margin: EdgeInsets.all(2),
+                        // color: Colors.grey.shade400,
+                        width: 378,
+                        height: 48,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.search,
+                              color: Color(0xffBEBEBE),
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Serach',
+                              style: TextStyle(
+                                  fontSize: 12, color: Color(0xffBEBEBE)),
+                            )
                           ],
-                          orgName: 'Oraganization Name',
-                          subjectName: 'Here we add the subject',
-                          time: 'Today, 11:00 AM',
                         ),
-                        OrganizationCard(
-                          mysize: mysize,
-                          email:
-                              'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                          hash: '#Urgent # Egyptian Military',
-                          images: [
-                            'assets/images/1.jpg',
-                            'assets/images/2.png'
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            StatusCard(
+                                circleColor: Colors.red,
+                                num: 9,
+                                statusName:
+                                    AppLocalizations.of(context)!.inbox),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            StatusCard(
+                                circleColor: Colors.blue,
+                                num: 9,
+                                statusName:
+                                    AppLocalizations.of(context)!.inProgress)
                           ],
-                          orgName: 'Oraganization Name',
-                          subjectName: 'Here we add the subject',
-                          time: 'Today, 11:00 AM',
+                        ),
+                        Column(
+                          children: [
+                            StatusCard(
+                                circleColor: Colors.yellow,
+                                num: 9,
+                                statusName:
+                                    AppLocalizations.of(context)!.pending),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            StatusCard(
+                                circleColor: Colors.green,
+                                num: 9,
+                                statusName:
+                                    AppLocalizations.of(context)!.completed)
+                          ],
                         )
                       ],
-                      title: AppLocalizations.of(context)!.officialOrganization,
                     ),
-                    MyExpansion(
-                        mySize: mysize,
-                        contents: [],
-                        title: AppLocalizations.of(context)!.ngos),
-                    MyExpansion(
-                        mySize: mysize,
-                        contents: [
-                          Container(
-                            padding: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Column(
-                              children: [
-                                OthersCard(
-                                  color: Colors.red,
-                                  email:
-                                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                                  orgName: 'Oraganization Name',
-                                  subjectName: 'Here we add the subject',
-                                  time: 'Today, 11:00 AM',
-                                ),
-                                OthersCard(
-                                  color: Colors.yellow,
-                                  email:
-                                      'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-                                  orgName: 'Oraganization Name',
-                                  subjectName: 'Here we add the subject',
-                                  time: 'Today, 11:00 AM',
-                                ),
-                              ],
-                            ),
+                  ),
+                  MyExpansion(
+                    mySize: mysize,
+                    contents: [
+                      OrganizationCard(
+                        mysize: mysize,
+                        email:
+                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                        hash: '#Urgent # Egyptian Military',
+                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
+                        orgName: 'Oraganization Name',
+                        subjectName: 'Here we add the subject',
+                        time: 'Today, 11:00 AM',
+                      ),
+                      OrganizationCard(
+                        mysize: mysize,
+                        email:
+                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                        hash: '#Urgent # Egyptian Military',
+                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
+                        orgName: 'Oraganization Name',
+                        subjectName: 'Here we add the subject',
+                        time: 'Today, 11:00 AM',
+                      )
+                    ],
+                    title: AppLocalizations.of(context)!.officialOrganization,
+                  ),
+                  MyExpansion(
+                      mySize: mysize,
+                      contents: [],
+                      title: AppLocalizations.of(context)!.ngos),
+                  MyExpansion(
+                      mySize: mysize,
+                      contents: [
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        ],
-                        title: AppLocalizations.of(context)!.other),
-                    Padding(
-                      padding: EdgeInsets.only(top: 25, left: 15),
-                      child: Text(
-                        AppLocalizations.of(context)!.tags,
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
+                          child: Column(
+                            children: [
+                              OthersCard(
+                                color: Colors.red,
+                                email:
+                                    'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                                orgName: 'Oraganization Name',
+                                subjectName: 'Here we add the subject',
+                                time: 'Today, 11:00 AM',
+                              ),
+                              OthersCard(
+                                color: Colors.yellow,
+                                email:
+                                    'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                                orgName: 'Oraganization Name',
+                                subjectName: 'Here we add the subject',
+                                time: 'Today, 11:00 AM',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                      title: AppLocalizations.of(context)!.other),
+                  Padding(
+                    padding: EdgeInsets.only(top: 25, left: 15),
+                    child: Text(
+                      AppLocalizations.of(context)!.tags,
+                      style: Theme.of(context).textTheme.headline6,
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 15,
-                      ),
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                        left: 10,
-                        right: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Tags(
-                        tags: const [
-                          'All Tags',
-                          '#Urgant',
-                          '#Egytian Military',
-                          '#New',
-                        ],
-                      ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 15,
                     ),
-                  ],
-                ),
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                      right: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Tags(
+                      tags: const [
+                        'All Tags',
+                        '#Urgant',
+                        '#Egytian Military',
+                        '#New',
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            );
-    });
+            ),
+          );
   }
 }
