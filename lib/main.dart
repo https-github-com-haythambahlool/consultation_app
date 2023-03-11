@@ -2,11 +2,14 @@ import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/sharedPrefernces/shared_pref_controller.dart';
 import 'package:consultation_app/routes_manager.dart';
 import 'package:consultation_app/view/testScreen.dart';
+import 'package:consultation_app/view/testShimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'Shimmer/shimmerListTile.dart';
 
 void main() async {
   WidgetsFlutterBinding
@@ -25,10 +28,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider<LanguageProvider>(
-          create: (context) => LanguageProvider())
-    ], child: MyMaterialApp());
+    return MaterialApp(
+      home: testShimer(),
+    );
+    //
+    //   MultiProvider(providers: [
+    //   ChangeNotifierProvider<LanguageProvider>(
+    //       create: (context) => LanguageProvider())
+    // ], child:
+    //
+    //      MyMaterialApp()
+    //     );
   }
 }
 
@@ -47,9 +57,8 @@ class MyMaterialApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(Provider.of<LanguageProvider>(context).language),
-      // onGenerateRoute: RouteGenerator.getRoute,
-      // initialRoute: Routes.splashRoute,
-      home: test(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }

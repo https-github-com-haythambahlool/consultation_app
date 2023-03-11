@@ -46,6 +46,10 @@ class _LoginSignupState extends State<LoginSignup> {
 
   bool isLogin = true;
 
+  bool iconBool = false;
+  IconData iconLight = Icon(Icons.wb_sunny) as IconData;
+  IconData iconDark = Icon(Icons.nights_stay) as IconData;
+
   @override
   void initState() {
     // TODO: implement initState
