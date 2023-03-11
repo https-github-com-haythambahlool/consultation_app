@@ -31,6 +31,8 @@ class MailsApi {
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       mail = MailModel.fromJson(body['mail'][0]);
+      print(
+          'hello mail ${mail!.attachments![0].image} ||| act {mail!.activities![0].body}');
       return 'Success get the mail';
     } else {
       return 'error!!';

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:consultation_app/components/homeScreen/Tags.dart';
+import 'package:consultation_app/model/AttachmentApi.dart';
 
 import 'ActivitiesModel.dart';
 import 'SenderModel.dart';
@@ -38,10 +39,10 @@ class MailModel {
   String? createdAt;
   String? updatedAt;
   String? activitiesCount;
-  Sender? sender;
+  SenderModel? sender;
   Status? status;
   List<int>? tags;
-  List<dynamic>? attachments;
+  List<AttachmentModel>? attachments;
   List<Activity>? activities;
 
   MailModel.fromJson(Map<String, dynamic> json) {
@@ -58,16 +59,19 @@ class MailModel {
     updatedAt = json['updated_at'];
     activitiesCount = json['activities_count'];
 
-    sender = json['sender'] != null ? Sender.fromJson(json['sender']) : null;
+    sender =
+        json['sender'] != null ? SenderModel.fromJson(json['sender']) : null;
     status = json['status'] != null ? Status.fromJson(json['status']) : null;
 
-    tags = json['tags'] != null && json['tags'] == []
+    tags = json['tags'] != null && json['tags'] != []
         ? List.castFrom<dynamic, int>(json['tags'])
         : [];
-    attachments = json['attachments'] != null && json['attachments'] == []
-        ? List.castFrom<dynamic, dynamic>(json['attachments'])
+    attachments = json['attachments'] != null && json['attachments'] != []
+        ? List.from(json['attachments'])
+            .map((e) => AttachmentModel.fromJson(e))
+            .toList()
         : [];
-    activities = json['activities'] != null && json['activities'] == []
+    activities = json['activities'] != null && json['activities'] != []
         ? List.from(json['activities'])
             .map((e) => Activity.fromJson(e))
             .toList()

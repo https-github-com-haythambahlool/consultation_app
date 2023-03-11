@@ -39,7 +39,7 @@ class Category {
   DateTime createdAt;
   DateTime updatedAt;
   String? sendersCount;
-  List<Sender>? senders;
+  List<SenderModel>? senders;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["id"],
@@ -48,7 +48,8 @@ class Category {
         updatedAt: DateTime.parse(json["updated_at"]),
         sendersCount: json["senders_count"],
         senders: json["senders"] != null
-            ? List<Sender>.from(json["senders"].map((x) => Sender.fromJson(x)))
+            ? List<SenderModel>.from(
+                json["senders"].map((x) => SenderModel.fromJson(x)))
             : null,
       );
 

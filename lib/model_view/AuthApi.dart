@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:consultation_app/constant/const_Api.dart';
 import 'package:consultation_app/model/TagsModel.dart';
 import 'package:consultation_app/model/userModel.dart';
@@ -62,7 +63,6 @@ class Auth extends ChangeNotifier {
   Future getUser() async {
     http.Response response = await http.get(Uri.parse(userInfoUrl),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print('user from token : ${response.body}');
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       user = User.fromJson(body['user']);
@@ -100,7 +100,6 @@ class Auth extends ChangeNotifier {
   Future getAllUsers() async {
     http.Response response = await http.get(Uri.parse(allUsersUrl),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    // print(response.body);
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
 
@@ -127,22 +126,33 @@ class Auth extends ChangeNotifier {
         'and status code : ${response.statusCode} ///// body : ${response.body} ');
   }
 
-  Future getUserId() async {
-    http.Response response = await http.get(Uri.parse(getUserIdUrl(10)),
+  Future getUserId(userId) async {
+    http.Response response = await http.get(Uri.parse(getUserIdUrl(userId)),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print(response.body);
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      user = User.fromJson(body);
+      return user;
+    } else {
+      return 'error!!';
+    }
   }
 
-  Future deleteUser() async {
-    http.Response response = await http.delete(
-        Uri.parse(deleteUserUrl(user!.id!)),
+  Future deleteUser(userId) async {
+    http.Response response = await http.delete(Uri.parse(deleteUserUrl(userId)),
         headers: {'Authorization': 'Bearer ${token!.token!}'});
-    print(response.body);
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      user = User.fromJson(body);
+      return 'Success Delete ${user!.name}';
+    } else {
+      return 'error!!';
+    }
   }
 
-  Future changePassword(password) async {
+  Future changePassword(password, userId) async {
     http.Response response = await http.post(
-        Uri.parse(changePasswordUrl(user!.id!)),
+        Uri.parse(changePasswordUrl(userId)),
         headers: {'Authorization': 'Bearer ${token!.token!}'},
         body: {'password': password, 'password_confirmation': password});
 
@@ -153,8 +163,8 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  Future changeRole(roleId) async {
-    http.Response response = await http.put(Uri.parse(changeRoleUrl(user!.id!)),
+  Future changeRole(roleId, UserId) async {
+    http.Response response = await http.put(Uri.parse(changeRoleUrl(UserId)),
         headers: {'Authorization': 'Bearer ${token!.token!}'},
         body: {'role_id': roleId});
     if (response.statusCode == 200) {
@@ -173,53 +183,17 @@ class Auth extends ChangeNotifier {
   }
 
 // pending
-  Future Search(int statusId) async {
+  Future Search(
+      {String? statusId,
+      required String text,
+      String? start,
+      String? end}) async {
     http.Response response = await http.get(
-      Uri.parse(SearchUrl(10)),
+      Uri.parse(
+          SearchUrl(text: text, statusId: statusId, start: start, end: end)),
       headers: {'Authorization': 'Bearer ${token!.token!}'},
     );
-    print(response.body);
-  }
-
-  Future getAllSenders() async {
-    http.Response response = await http.get(
-      Uri.parse(getAllSenderUrl(false)),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    print(response.body);
-  }
-
-  Future getSingleSender() async {
-    http.Response response = await http.get(
-      Uri.parse(getSingleSenderUrl(id: 2, value: false)),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    print(response.body);
-  }
-
-  Future createSenders() async {
-    http.Response response = await http.post(Uri.parse(createSenderUsrl),
-        headers: {'Authorization': 'Bearer ${token!.token!}'},
-        body: {'name': "ahmed", 'mobile': "0599421421", 'category_id': 1});
-
-    print(response.body);
-  }
-
-//  body لل image مش عارف شو احط
-  Future updateSenders() async {
-    http.Response response =
-        await http.put(Uri.parse(updateSendersUrl(user!.id!)), headers: {
-      'Authorization': 'Bearer ${token!.token!}'
-    }, body: {
-      "name": "osama ahmed",
-    });
-    print(response.body);
-  }
-
-  Future deleteSenders() async {
-    http.Response response = await http.delete(
-        Uri.parse(deleteSenderUrl(user!.id!)),
-        headers: {'Authorization': 'Bearer ${token!.token!}'});
+    print('hi search $statusId oo $text, $start, $end');
     print(response.body);
   }
 }
