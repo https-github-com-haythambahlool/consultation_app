@@ -16,7 +16,7 @@ class CommentField extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(left: 100, bottom: 40),
+            contentPadding: EdgeInsets.only(left: 50, bottom: 12, right: 50),
             hintText: AppLocalizations.of(context)!.addNewActivity,
             hintStyle: TextStyle(
               color: Colors.grey[500],

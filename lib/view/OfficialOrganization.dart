@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OfficialOrganization extends StatefulWidget {
   const OfficialOrganization({super.key});
@@ -23,12 +24,13 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
     return Scaffold(
       backgroundColor: backgrondColor,
       appBar: AppBar(
-        leadingWidth: 150,
+        leadingWidth: 186,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.only(right: 0, left: 0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
                 icon: Icon(
@@ -40,7 +42,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                 },
               ),
               Text(
-                'Home',
+                AppLocalizations.of(context)!.emailDetails,
                 style: TextStyle(
                   color: kprimColor,
                   fontSize: 20,
@@ -51,7 +53,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: FaIcon(
               FontAwesomeIcons.ellipsis,
               color: kprimColor,
@@ -84,14 +86,15 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               'Sport Ministry',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              'Official Organization',
+                              AppLocalizations.of(context)!
+                                  .officialOrganization,
                               style: TextStyle(color: Colors.grey),
                             )
                           ],
@@ -122,12 +125,12 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                     Theme(
                       data: Theme.of(context)
                           .copyWith(dividerColor: Colors.transparent),
-                      child: const ExpansionTile(
+                      child: ExpansionTile(
                         tilePadding: EdgeInsets.all(0),
                         textColor: Colors.black,
                         iconColor: Colors.black,
                         title: Text(
-                          'Title of mail',
+                          AppLocalizations.of(context)!.titleOfMail,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -156,44 +159,38 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FaIcon(
-                      FontAwesomeIcons.hashtag,
-                      color: Colors.grey[600],
-                      size: 25,
-                    ),
-                    // Text(
-                    //   '#',
-                    //   style: TextStyle(
-                    //     color: Colors.grey[600],
-                    //     fontSize: 25,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '#Urgant',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '#Egyptian Military',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 90,
+                    Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.hashtag,
+                          color: Colors.grey[600],
+                          size: 25,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          '#Urgant',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          '#Egyptian Military',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
                     FaIcon(
                       FontAwesomeIcons.angleRight,
@@ -213,44 +210,35 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FaIcon(
-                      FontAwesomeIcons.tag,
-                      color: Colors.grey[600],
-                      size: 25,
-                    ),
-                    // Text(
-                    //   '#',
-                    //   style: TextStyle(
-                    //     color: Colors.grey[600],
-                    //     fontSize: 25,
-                    //     fontWeight: FontWeight.w700,
-                    //   ),
-                    // ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Text(
-                        'Pending',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                    Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.tag,
+                          color: Colors.grey[600],
+                          size: 25,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: 200,
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.yellow,
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.pending,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     FaIcon(
                       FontAwesomeIcons.angleRight,
@@ -274,7 +262,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Decision',
+                      AppLocalizations.of(context)!.decision,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
@@ -301,7 +289,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Add Image',
+                      AppLocalizations.of(context)!.addImage,
                       style: TextStyle(
                         color: kprimColor,
                         fontSize: 18,
@@ -343,7 +331,7 @@ class _OfficialOrganizationState extends State<OfficialOrganization> {
                     ),
                     CommentField()
                   ],
-                  title: 'Activity'),
+                  title: AppLocalizations.of(context)!.activity),
               SizedBox(
                 height: 50,
               ),

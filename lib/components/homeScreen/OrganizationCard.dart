@@ -28,18 +28,19 @@ class OrganizationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-       Navigator.pushNamed(context, Routes.detailsRoute);
+        Navigator.pushNamed(context, Routes.detailsRoute);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         padding: EdgeInsets.all(15),
-        height: 200,
+        height: 210,
         width: mysize.width - 50,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -119,6 +120,7 @@ class OrganizationCard extends StatelessWidget {
               width: 150, height: 40,
               padding: EdgeInsets.only(left: 25),
               child: ListView.builder(
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: images.length,
                   itemBuilder: (context, index) {

@@ -33,6 +33,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
+
     var auth = Provider.of<Auth>(context);
     var status = Provider.of<StatusApi>(context);
     var category = Provider.of<CategoriesApi>(context);
@@ -45,6 +46,55 @@ class _HomeState extends State<Home> {
         ? const testShimer()
         : Scaffold(
             bottomNavigationBar: GestureDetector(
+  
+        onTap: () {
+          Navigator.pushNamed(context, Routes.newInBoxRoute);
+        },
+        child: Container(
+            //  margin: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(15),
+            decoration: const BoxDecoration(color: Colors.white),
+            child: Row(
+              textBaseline: TextBaseline.alphabetic,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.add_circle,
+                  color: kprimColor,
+                  size: 30,
+                ),
+                Text(
+                  AppLocalizations.of(context)!.newInbox,
+                  style: TextStyle(
+                    color: kprimColor,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )
+              ],
+            )),
+      ),
+      backgroundColor: backgrondColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: IconButton(
+            onPressed: () {
+              //Navigator.pushNamed(context, Routes.searchRoute);
+            },
+            icon:
+                const Icon(FontAwesomeIcons.barsStaggered, color: Colors.black),
+            // FontAwesomeIcons.barsStaggered,
+            // color: Colors.black,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: GestureDetector(
+
               onTap: () {
                 Navigator.pushNamed(context, Routes.newInBoxRoute);
               },
@@ -54,18 +104,16 @@ class _HomeState extends State<Home> {
                   decoration: const BoxDecoration(color: Colors.white),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.add_circle,
-                        color: kprimColor,
-                        size: 30,
+                      Icon(
+                        Icons.search,
+                      color: kprimColor,
+
                       ),
                       Text(
-                        AppLocalizations.of(context)!.newInbox,
-                        style: const TextStyle(
-                          color: kprimColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        AppLocalizations.of(context)!.search,
+                        style:
+                            TextStyle(fontSize: 12, color: kprimColor),
+
                       )
                     ],
                   )),
@@ -284,6 +332,37 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+
+                ],
+                title: AppLocalizations.of(context)!.other),
+            Padding(
+              padding: EdgeInsets.only(top: 25, left: 15, right: 15),
+              child: Text(
+                AppLocalizations.of(context)!.tags,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 15,
+              ),
+              padding: const EdgeInsets.only(
+                top: 10,
+                left: 10,
+                right: 10,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Tags(
+                tags: const [
+                  'All Tags',
+                  '#Urgant',
+                  '#Egytian Military',
+                  '#New',
+
                 ],
               ),
             ),

@@ -454,7 +454,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  width: 120,
+                  width: 130,
                   height: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -481,7 +481,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  width: 120,
+                  width: 118,
                   height: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),

@@ -35,5 +35,10 @@
   "addDecision": "اضافة قرار",
   "addImage": "اضافة صورة",
   "activity": "الأنشطة",
-  "addNewActivity": "اضافة نشاط جديد..."
+  "addNewActivity": "اضافة نشاط جديد...",
+  "emailDetails": "تفاصيل الإيميل",
+  "home": "الرئيسية",
+  "filter": "فلترة",
+  "found": "موجود",
+  "show": "إظهار"
 }

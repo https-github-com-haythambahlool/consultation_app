@@ -36,6 +36,10 @@
     "addImage": "Add Image",
     "activity": "Activity",
     "addNewActivity": "Add New Activity...",
+    "emailDetails": "Mail Details",
+    "home": "Home",
+    "filter": "Filters",
+    "found": "Found",
+    "show": "Show"
 
-    "activity": "Activity"
 }
