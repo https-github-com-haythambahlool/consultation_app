@@ -4,6 +4,7 @@ import 'package:consultation_app/model/MailModel.dart';
 import 'package:consultation_app/model_view/AuthApi.dart';
 import 'package:consultation_app/model_view/CategoriesApi.dart';
 import 'package:consultation_app/model_view/MailsApi.dart';
+import 'package:consultation_app/model_view/StatusApi.dart';
 import 'package:consultation_app/model_view/TagsApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +16,7 @@ class test extends StatelessWidget {
   MailsApi mail = MailsApi();
   TagsApi tags = TagsApi();
   CategoriesApi cate = CategoriesApi();
+  StatusApi status = StatusApi();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,7 @@ class test extends StatelessWidget {
             onPressed: () {
               auth.login('o@o.com', '123456').then(
                 (value) {
-                  tags.createtags(auth.token!.token, 'Goodbye geeks');
+                  status.getSingleStatus(auth.token!.token, 2, true);
                 },
               );
             },

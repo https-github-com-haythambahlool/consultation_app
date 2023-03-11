@@ -53,22 +53,25 @@ class MailModel {
     archiveDate = json['archive_date'];
     decision = json['decision'];
     statusId = json['status_id'];
-    finalDecision = null;
+    finalDecision = json['final_decision'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     activitiesCount = json['activities_count'];
+
     sender = json['sender'] != null ? Sender.fromJson(json['sender']) : null;
     status = json['status'] != null ? Status.fromJson(json['status']) : null;
-    tags =
-        json['tags'] != null ? List.castFrom<dynamic, int>(json['tags']) : null;
-    attachments = json['attachments'] != null
+
+    tags = json['tags'] != null && json['tags'] == []
+        ? List.castFrom<dynamic, int>(json['tags'])
+        : [];
+    attachments = json['attachments'] != null && json['attachments'] == []
         ? List.castFrom<dynamic, dynamic>(json['attachments'])
-        : null;
-    activities = json['activities'] != null
+        : [];
+    activities = json['activities'] != null && json['activities'] == []
         ? List.from(json['activities'])
             .map((e) => Activity.fromJson(e))
             .toList()
-        : null;
+        : [];
   }
   Map<String, dynamic> body = {
     'subject': 'subject',

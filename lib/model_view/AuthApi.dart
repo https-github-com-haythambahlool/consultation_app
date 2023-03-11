@@ -164,22 +164,6 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  Future getALlStatus() async {
-    http.Response response = await http.get(
-      Uri.parse(getAllStutassUrl(true)),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    print(response.body);
-  }
-
-  Future getSingleStatus() async {
-    http.Response response = await http.get(
-      Uri.parse(getSingleStatusUrl(statusId: 2, value: true)),
-      headers: {'Authorization': 'Bearer ${token!.token!}'},
-    );
-    print(response.body);
-  }
-
   Future getallRoles() async {
     http.Response response = await http.get(
       Uri.parse(getRoleUrl),
