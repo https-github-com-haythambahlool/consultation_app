@@ -24,6 +24,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool IconBool = false;
+
+  IconData iconLight = Icon(Icons.wb_sunny) as IconData;
+  IconData iconDark = Icon(Icons.nights_stay) as IconData;
+
   @override
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
