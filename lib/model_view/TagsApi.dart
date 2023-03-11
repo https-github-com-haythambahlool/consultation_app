@@ -8,6 +8,8 @@ import '../model/TagsModel.dart';
 class TagsApi extends ChangeNotifier {
   TagModel? tagModel;
   List<TagModel> allTags = [];
+  bool isLoading = true;
+
   MailModel mailModel = MailModel();
   List<MailModel> mailsForTag = [];
   Future getAlltags(token) async {
@@ -21,6 +23,8 @@ class TagsApi extends ChangeNotifier {
         tagModel = TagModel.fromJson(tag);
         allTags.add(tagModel!);
       }
+      isLoading = false;
+      notifyListeners();
       return allTags;
     } else {
       return 'error!!';

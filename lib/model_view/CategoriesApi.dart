@@ -9,6 +9,8 @@ class CategoriesApi extends ChangeNotifier {
   CategoryModel? categoryModel;
   Category? category;
   List<Category> allCategories = [];
+  bool isLoading = true;
+
   Future getAllCategories(token) async {
     http.Response response = await http.get(Uri.parse(getAllcategoriesUrl),
         headers: {'Authorization': 'Bearer ${token}'});
@@ -19,6 +21,8 @@ class CategoriesApi extends ChangeNotifier {
         category = Category.fromJson(cate);
         allCategories.add(category!);
       }
+      isLoading = false;
+      notifyListeners();
       return allCategories;
     } else {
       return 'error!!';

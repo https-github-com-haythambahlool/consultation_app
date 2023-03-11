@@ -7,7 +7,7 @@ class StatusCard extends StatelessWidget {
       required this.num,
       required this.statusName});
   Color circleColor;
-  int num;
+  String num;
   String statusName;
   @override
   Widget build(BuildContext context) {

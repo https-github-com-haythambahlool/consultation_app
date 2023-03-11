@@ -9,6 +9,8 @@ import '../constant/const_Api.dart';
 class StatusApi extends ChangeNotifier {
   Status statusModel = Status();
   List<Status> allStatus = [];
+  bool isLoading = true;
+
   Future getAllStatus(token, bool withMail) async {
     http.Response response = await http.get(
       Uri.parse(getAllStutassUrl(withMail)),
@@ -21,6 +23,8 @@ class StatusApi extends ChangeNotifier {
         statusModel = Status.fromJson(status);
         allStatus.add(statusModel);
       }
+      isLoading = false;
+      notifyListeners();
       return allStatus;
     } else {
       return 'error!!';
