@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:consultation_app/components/MySnackbar.dart';
 import 'package:consultation_app/constant/const.dart';
-import 'package:consultation_app/model_view/Auth.dart';
+import 'package:consultation_app/model_view/AuthApi.dart';
+import 'package:consultation_app/model_view/CategoriesApi.dart';
+import 'package:consultation_app/model_view/StatusApi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +29,8 @@ class LoginSignup extends StatefulWidget {
 }
 
 class _LoginSignupState extends State<LoginSignup> {
-  Auth auth = Auth();
+  // Auth auth = Auth();
+
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirPassword = TextEditingController();
@@ -46,6 +49,10 @@ class _LoginSignupState extends State<LoginSignup> {
 
   bool isLogin = true;
 
+  bool iconBool = false;
+  // IconData iconLight = Icon(Icons.wb_sunny) as IconData;
+  // IconData iconDark = Icon(Icons.nights_stay) as IconData;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -55,6 +62,7 @@ class _LoginSignupState extends State<LoginSignup> {
   @override
   Widget build(BuildContext context) {
     var mysize = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: backgrondColor,
       floatingActionButton: FloatingActionButton(
@@ -80,9 +88,12 @@ class _LoginSignupState extends State<LoginSignup> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo.jpg',
-                      width: 120,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100),
+                      child: Image.asset(
+                        'assets/images/logo.jpg',
+                        width: 120,
+                      ),
                     ),
                     Text(
                       '',
@@ -248,6 +259,7 @@ class _LoginSignupState extends State<LoginSignup> {
   }
 
   login() {
+    var auth = Provider.of<Auth>(context, listen: false);
     if (password.text != '' && email.text != '') {
       _isAuth = true;
       auth.login(email.text, password.text).then((value) {
@@ -257,12 +269,13 @@ class _LoginSignupState extends State<LoginSignup> {
           errorPassword = 'Required Password';
           errorEmail = 'Required Email';
           _isAuth = false;
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(MySnackbar().mySnackBar(
-                body: 'Success Login to ${auth.user!.name}',
-                title: '',
-                type: ContentType.success));
+          // ScaffoldMessenger.of(context)
+          //   ..hideCurrentSnackBar()
+          //   ..showSnackBar(MySnackbar().mySnackBar(
+          //       body: 'Success Login to ${auth.user!.name}',
+          //       title: '',
+          //       type: ContentType.success));
+
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {
             return Home();
@@ -317,6 +330,7 @@ class _LoginSignupState extends State<LoginSignup> {
   }
 
   register() {
+    var auth = Provider.of<Auth>(context, listen: false);
     if (password.text != '' &&
         email.text != '' &&
         username.text != '' &&

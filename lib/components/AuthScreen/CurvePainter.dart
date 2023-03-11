@@ -8,12 +8,12 @@ class CurvePainter extends CustomPainter {
     var paint = Paint();
     var rect = Offset.zero & size;
 
-    paint.shader = LinearGradient(
+    paint.shader = const LinearGradient(
         begin: Alignment.centerRight,
         end: Alignment.centerLeft,
         stops: [
-          20,
-          50
+          0.5,
+          1
         ],
         colors: [
           kprimColor,

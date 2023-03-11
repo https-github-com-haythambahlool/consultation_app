@@ -20,7 +20,7 @@ const getAlltagsUrl = '$baseUrl/tags';
 const createtagsUrl = '$baseUrl/tags';
 const getRoleUrl = '$baseUrl/roles';
 const createSenderUsrl = "$baseUrl/senders";
-
+const attachmentsUrl = '$baseUrl/attachments';
 String deleteSenderUrl(int idUser) {
   return "$baseUrl/senders/$idUser";
 }
@@ -29,8 +29,13 @@ String updateSendersUrl(int idUser) {
   return "$baseUrl/senders/$idUser";
 }
 
-String SearchUrl(int statusId) {
-  return "$baseUrl/search?text=test&start&end&$statusId";
+String SearchUrl(
+    {String? statusId, required String text, String? start, String? end}) {
+  end == null ? end = '' : end = '&$end';
+  start == null ? start = '' : start = '&$start';
+  statusId == null ? statusId = '' : statusId = '&$statusId';
+  print('hi const "$baseUrl/search?text=$text$start$end$statusId"');
+  return "$baseUrl/search?text=$text$start$end$statusId";
 }
 
 String getAlltagsWithMailUrl(var tagsId) {
