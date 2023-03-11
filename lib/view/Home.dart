@@ -1,11 +1,7 @@
 import 'package:consultation_app/constant/const.dart';
-
 import 'package:consultation_app/providers/language_provider.dart';
-
 import 'package:consultation_app/view/NewInbox.dart';
-
 import 'package:consultation_app/routes_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -24,15 +20,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool IconBool = false;
-
-  IconData iconLight = Icon(Icons.wb_sunny) as IconData;
-  IconData iconDark = Icon(Icons.nights_stay) as IconData;
-
   @override
   Widget build(BuildContext context) {
     Size mysize = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: IconButton(
+        color: kprimColor,
+        icon: Icon(Icons.sunny),
+        onPressed: () {},
+      ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, Routes.newInBoxRoute);
@@ -79,10 +75,7 @@ class _HomeState extends State<Home> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: GestureDetector(
-              onTap: () {
-                // Provider.of<LanguageProvider>(context, listen: false)
-                //     .changeLanguage();
-              },
+              onTap: () {},
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 23,

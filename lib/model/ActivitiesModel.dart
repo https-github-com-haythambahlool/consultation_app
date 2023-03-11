@@ -1,5 +1,5 @@
-class Activities {
-  Activities({
+class Activity {
+  Activity({
     this.id,
     this.body,
     this.userId,
@@ -12,15 +12,15 @@ class Activities {
   });
   int? id;
   String? body;
-  int? userId;
-  int? mailId;
+  String? userId;
+  String? mailId;
   String? sendNumber;
   String? sendDate;
   String? sendDestination;
   String? createdAt;
   String? updatedAt;
 
-  Activities.fromJson(Map<String, dynamic> json) {
+  Activity.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     body = json['body'];
     userId = json['user_id'];

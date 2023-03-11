@@ -12,14 +12,14 @@ class TagModel {
   late final String name;
   late final String createdAt;
   late final String updatedAt;
-  late final Pivot pivot;
+  Pivot? pivot;
 
   TagModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    pivot = Pivot.fromJson(json['pivot']);
+    pivot = json['pivot'] != null ? Pivot.fromJson(json['pivot']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -28,7 +28,7 @@ class TagModel {
     _data['name'] = name;
     _data['created_at'] = createdAt;
     _data['updated_at'] = updatedAt;
-    _data['pivot'] = pivot.toJson();
+    _data['pivot'] = pivot!.toJson();
     return _data;
   }
 }

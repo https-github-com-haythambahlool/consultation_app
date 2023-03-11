@@ -42,10 +42,9 @@ class MailModel {
   Status? status;
   List<int>? tags;
   List<dynamic>? attachments;
-  List<Activities>? activities;
+  List<Activity>? activities;
 
   MailModel.fromJson(Map<String, dynamic> json) {
-    print('from json $json');
     id = json['id'];
     subject = json['subject'];
     description = json['description'];
@@ -54,36 +53,57 @@ class MailModel {
     archiveDate = json['archive_date'];
     decision = json['decision'];
     statusId = json['status_id'];
-    finalDecision = null;
+    finalDecision = json['final_decision'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     activitiesCount = json['activities_count'];
+
     sender = json['sender'] != null ? Sender.fromJson(json['sender']) : null;
     status = json['status'] != null ? Status.fromJson(json['status']) : null;
-    tags =
-        json['tags'] != null ? List.castFrom<dynamic, int>(json['tags']) : null;
-    attachments = json['attachments'] != null
-        ? List.castFrom<dynamic, dynamic>(json['attachments'])
-        : null;
-    activities = json['activities'] != null
-        ? List.from(json['activities'])
-            .map((e) => Activities.fromJson(e))
-            .toList()
-        : null;
-  }
 
+    tags = json['tags'] != null && json['tags'] == []
+        ? List.castFrom<dynamic, int>(json['tags'])
+        : [];
+    attachments = json['attachments'] != null && json['attachments'] == []
+        ? List.castFrom<dynamic, dynamic>(json['attachments'])
+        : [];
+    activities = json['activities'] != null && json['activities'] == []
+        ? List.from(json['activities'])
+            .map((e) => Activity.fromJson(e))
+            .toList()
+        : [];
+  }
+  Map<String, dynamic> body = {
+    'subject': 'subject',
+    'description': '',
+    'decision': '',
+    'final_decision': '',
+    'sender_id': '1',
+    'archive_number': '1252',
+    'archive_date': DateTime.now().toString(),
+    'status_id': '1',
+    'tags': jsonEncode([1, 2]),
+    'activities': jsonEncode([
+      {'body': 'any text', 'user_id': 1},
+      {'body': 'any text2', 'user_id': 1}
+    ]),
+  };
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['subject'] = subject;
-    _data['description'] = description;
-    _data['sender_id'] = senderId;
-    _data['archive_number'] = archiveNumber;
-    _data['archive_date'] = archiveDate;
-    _data['decision'] = decision;
-    _data['status_id'] = statusId;
-    _data['final_decision'] = finalDecision;
-    // _data['tags'] = jsonDecode(tags.toString());
-    // _data['activities'] = activities!.map((e) => e.toJson()).toString();
+    _data['subject'] = subject ?? '';
+    _data['description'] = description ?? '';
+    _data['sender_id'] = senderId ?? '';
+    _data['archive_number'] = archiveNumber ?? '';
+    _data['archive_date'] = DateTime.now().toString();
+    _data['decision'] = decision ?? '';
+    _data['status_id'] = statusId ?? '';
+    _data['final_decision'] = finalDecision ?? '';
+    _data['tags'] = jsonEncode(tags);
+    _data['activities'] = jsonEncode([
+      {'body': 'any text', 'user_id': 1},
+      {'body': 'any text2', 'user_id': 1}
+    ]);
+    // jsonEncode(activities!.map((e) => e.toJson()).toList());
     return _data;
   }
 }
