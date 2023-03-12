@@ -34,30 +34,32 @@ class Category {
     required this.senders,
   });
 
-  int id;
-  String name;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int? id;
+  String? name;
+  String? createdAt;
+  String? updatedAt;
   String? sendersCount;
   List<SenderModel>? senders;
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["id"],
-        name: json["name"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        sendersCount: json["senders_count"],
-        senders: json["senders"] != null
-            ? List<SenderModel>.from(
-                json["senders"].map((x) => SenderModel.fromJson(x)))
-            : null,
-      );
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+    print('hello');
+    createdAt = json["created_at"] ?? '';
+    updatedAt = json["updated_at"] ?? '';
+
+    sendersCount = json["senders_count"];
+    senders = json["senders"] != null && json["senders"] != []
+        ? List<SenderModel>.from(
+            json["senders"].map((x) => SenderModel.fromJson(x)))
+        : null;
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt,
+        "updated_at": updatedAt,
         "senders_count": sendersCount,
         "senders": List<dynamic>.from(senders!.map((x) => x.toJson())),
       };

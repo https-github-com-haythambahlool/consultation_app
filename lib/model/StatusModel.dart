@@ -13,7 +13,7 @@ class Status {
     id = json['id'];
     name = json['name'];
     color = json['color'];
-    if (json['mails'] != null) {
+    if (json['mails'] != null && json['mails'] == []) {
       for (var mail in json['mails']) {
         var mailmodel = MailModel.fromJson(mail);
 

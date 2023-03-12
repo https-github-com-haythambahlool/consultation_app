@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:consultation_app/model/AttachmentApi.dart';
+import 'package:consultation_app/model/CategoryModel.dart';
 import 'package:consultation_app/model_view/AuthApi.dart';
 import 'package:consultation_app/model_view/CategoriesApi.dart';
 import 'package:consultation_app/model_view/MailsApi.dart';
@@ -51,14 +52,9 @@ class _testState extends State<test> {
                 onPressed: () {
                   auth.login('o@o.com', '123456').then(
                     (value) async {
-                      mail.getSingleMail(263, auth.token!.token!).then((value) {
-                        setState(() {
-                          imageFile =
-                              File(mail.mail!.attachments![0].image.toString());
-                          print('file $imageFile and path ${imageFile.path}');
-                          loading = true;
-                        });
-                      });
+                      cate.getSingleCategores(auth.token!.token, 1);
+                      // cate.getSingleCategores(auth.token!.token, 2);
+                      // cate.getSingleCategores(auth.token!.token, 3);
                       // imageFile = await picker
                       //     .pickMultiImage()
                       //     .then((value) {

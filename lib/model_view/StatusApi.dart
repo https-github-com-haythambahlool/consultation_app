@@ -24,7 +24,9 @@ class StatusApi extends ChangeNotifier {
         allStatus.add(statusModel);
       }
       isLoading = false;
+
       notifyListeners();
+
       return allStatus;
     } else {
       return 'error!!';

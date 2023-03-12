@@ -24,7 +24,9 @@ class TagsApi extends ChangeNotifier {
         allTags.add(tagModel!);
       }
       isLoading = false;
+
       notifyListeners();
+
       return allTags;
     } else {
       return 'error!!';

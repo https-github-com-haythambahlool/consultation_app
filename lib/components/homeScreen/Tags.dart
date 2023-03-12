@@ -1,3 +1,4 @@
+import 'package:consultation_app/model/TagsModel.dart';
 import 'package:flutter/material.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 
@@ -6,12 +7,20 @@ class Tags extends StatelessWidget {
     super.key,
     required this.tags,
   });
-  List tags;
+  List<TagModel> tags;
+  List tag = [];
+  Set nTags = {};
   @override
   Widget build(BuildContext context) {
+    for (var tag in tags) {
+      nTags.add(tag.name);
+    }
+    for (var ntag in nTags) {
+      tag.add(ntag);
+    }
     return TagEditor(
         minTextFieldWidth: 0,
-        length: tags.length,
+        length: tag.length,
         enabled: false,
         // delimiters: [',', ' '],
         hasAddButton: false,
@@ -29,7 +38,7 @@ class Tags extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             child: Text(
-              '${tags[index]}',
+              '${tag[index]}',
               style: TextStyle(
                 fontSize: 17,
                 color: Colors.grey[700],

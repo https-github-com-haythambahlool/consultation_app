@@ -9,6 +9,8 @@ class CategoriesApi extends ChangeNotifier {
   CategoryModel? categoryModel;
   Category? category;
   List<Category> allCategories = [];
+  List<Category> allCategoriesWithMails = [];
+
   bool isLoading = true;
 
   Future getAllCategories(token) async {
@@ -22,6 +24,7 @@ class CategoriesApi extends ChangeNotifier {
         allCategories.add(category!);
       }
       isLoading = false;
+
       notifyListeners();
       return allCategories;
     } else {
@@ -35,7 +38,13 @@ class CategoriesApi extends ChangeNotifier {
         headers: {'Authorization': 'Bearer ${token}'});
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      categoryModel = CategoryModel.fromJson(body);
+
+      category = Category.fromJson(body);
+      allCategoriesWithMails.add(category!);
+
+      isLoading = false;
+
+      notifyListeners();
       return categoryModel;
     } else {
       return 'error!!';

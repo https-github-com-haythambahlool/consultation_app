@@ -29,14 +29,7 @@ class _TagsScreenState extends State<TagsScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Tags(
-                tags: const [
-                  'All Tags',
-                  '#Urgant',
-                  '#Egytian Military',
-                  '#New',
-                ],
-              ),
+              child: Tags(tags: []),
             ),
             SizedBox(
               height: 20,

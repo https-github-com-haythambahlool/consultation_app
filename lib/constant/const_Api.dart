@@ -87,7 +87,7 @@ String updateUserUrl({required String name, required int id}) {
 
 // const getSinglecategoriesUrl = ;
 String getSinglecategoriesUrl(int categoryId) {
-  return '$baseUrl/categories/$categoryId';
+  return '$baseUrl/categories/$categoryId/mails';
 }
 
 // const getAllStutassUrl =

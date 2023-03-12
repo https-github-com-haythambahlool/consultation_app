@@ -7,8 +7,10 @@ import 'package:consultation_app/model_view/TagsApi.dart';
 import 'package:consultation_app/providers/language_provider.dart';
 import 'package:consultation_app/sharedPrefernces/shared_pref_controller.dart';
 import 'package:consultation_app/routes_manager.dart';
+import 'package:consultation_app/view/NewInbox.dart';
 import 'package:consultation_app/view/home.dart';
 import 'package:consultation_app/view/LoginSignup.dart';
+import 'package:consultation_app/view/splash.dart';
 import 'package:consultation_app/view/testScreen.dart';
 import 'package:consultation_app/view/testShimmer.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,7 @@ class MyMaterialApp extends StatelessWidget {
       locale: Locale(Provider.of<LanguageProvider>(context).language),
       // onGenerateRoute: RouteGenerator.getRoute,
       // initialRoute: Routes.splashRoute,
-      home: LoginSignup(),
+      home: Splash(),
     );
   }
 }
