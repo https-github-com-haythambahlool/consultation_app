@@ -77,9 +77,9 @@ class MyMaterialApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(Provider.of<LanguageProvider>(context).language),
-      // onGenerateRoute: RouteGenerator.getRoute,
-      // initialRoute: Routes.splashRoute,
-      home: Splash(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
+      // home: NewInbox(),
     );
   }
 }
