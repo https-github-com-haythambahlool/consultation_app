@@ -79,7 +79,7 @@ class MyMaterialApp extends StatelessWidget {
       locale: Locale(Provider.of<LanguageProvider>(context).language),
       onGenerateRoute: RouteGenerator.getRoute,
       initialRoute: Routes.splashRoute,
-      // home: NewInbox(),
+      // home: const LoginSignup(),
     );
   }
 }

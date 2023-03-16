@@ -44,7 +44,6 @@ class Category {
   Category.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     name = json["name"];
-    print('hello');
     createdAt = json["created_at"] ?? '';
     updatedAt = json["updated_at"] ?? '';
 

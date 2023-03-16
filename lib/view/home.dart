@@ -1,8 +1,6 @@
 import 'package:consultation_app/constant/const.dart';
 import 'package:consultation_app/model_view/AuthApi.dart';
 import 'package:consultation_app/model_view/TagsApi.dart';
-import 'package:consultation_app/providers/language_provider.dart';
-import 'package:consultation_app/view/NewInbox.dart';
 import 'package:consultation_app/routes_manager.dart';
 import 'package:consultation_app/view/testShimmer.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +12,6 @@ import '../components/homeScreen/OthersCard.dart';
 import '../components/homeScreen/StatusCard.dart';
 import '../components/homeScreen/Tags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../model_view/CategoriesApi.dart';
 import '../model_view/StatusApi.dart';
 
@@ -143,40 +140,64 @@ class _HomeState extends State<Home> {
                       children: [
                         Column(
                           children: [
-                            StatusCard(
-                                circleColor: Colors.red,
-                                num:
-                                    // status.allStatus != null &&
-                                    //         status.allStatus != []
-                                    status.allStatus[0].mailsCount!,
-                                //   : '0',
-                                statusName:
-                                    AppLocalizations.of(context)!.inbox),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.inProgressRoute);
+                              },
+                              child: StatusCard(
+                                  circleColor: Colors.red,
+                                  num:
+                                      // status.allStatus != null &&
+                                      //         status.allStatus != []
+                                      status.allStatus[0].mailsCount!,
+                                  //   : '0',
+                                  statusName:
+                                      AppLocalizations.of(context)!.inbox),
+                            ),
                             const SizedBox(
                               height: 10,
                             ),
-                            StatusCard(
-                                circleColor: Colors.blue,
-                                num: status.allStatus[3].mailsCount!,
-                                statusName:
-                                    AppLocalizations.of(context)!.inProgress)
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.inProgressRoute);
+                              },
+                              child: StatusCard(
+                                  circleColor: Colors.blue,
+                                  num: status.allStatus[3].mailsCount!,
+                                  statusName:
+                                      AppLocalizations.of(context)!.inProgress),
+                            )
                           ],
                         ),
                         Column(
                           children: [
-                            StatusCard(
-                                circleColor: Colors.yellow,
-                                num: status.allStatus[1].mailsCount!,
-                                statusName:
-                                    AppLocalizations.of(context)!.pending),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.inProgressRoute);
+                              },
+                              child: StatusCard(
+                                  circleColor: Colors.yellow,
+                                  num: status.allStatus[1].mailsCount!,
+                                  statusName:
+                                      AppLocalizations.of(context)!.pending),
+                            ),
                             const SizedBox(
                               height: 10,
                             ),
-                            StatusCard(
-                                circleColor: Colors.green,
-                                num: status.allStatus[2].mailsCount!,
-                                statusName:
-                                    AppLocalizations.of(context)!.completed)
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.inProgressRoute);
+                              },
+                              child: StatusCard(
+                                  circleColor: Colors.green,
+                                  num: status.allStatus[2].mailsCount!,
+                                  statusName:
+                                      AppLocalizations.of(context)!.completed),
+                            )
                           ],
                         )
                       ],
@@ -185,6 +206,26 @@ class _HomeState extends State<Home> {
                   MyExpansion(
                     mySize: mysize,
                     contents: [
+                      OrganizationCard(
+                        mysize: mysize,
+                        email:
+                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                        hash: '#Urgent # Egyptian Military',
+                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
+                        orgName: 'Oraganization Name',
+                        subjectName: 'Here we add the subject',
+                        time: 'Today, 11:00 AM',
+                      ),
+                      OrganizationCard(
+                        mysize: mysize,
+                        email:
+                            'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                        hash: '#Urgent # Egyptian Military',
+                        images: ['assets/images/1.jpg', 'assets/images/2.png'],
+                        orgName: 'Oraganization Name',
+                        subjectName: 'Here we add the subject',
+                        time: 'Today, 11:00 AM',
+                      ),
                       // OrganizationCard(
                       //   mysize: mysize,
                       //   senders: category.allCategoriesWithMails[1].senders!,

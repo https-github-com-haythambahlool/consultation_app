@@ -40,7 +40,7 @@ class MailsApi extends ChangeNotifier {
     }
   }
 
-  Future createMail({
+  Future<MailModel> createMail({
     required String token,
     subject,
     description,
@@ -75,9 +75,10 @@ class MailsApi extends ChangeNotifier {
     if (response.statusCode == 200) {
       dynamic body = jsonDecode(response.body);
       mail = MailModel.fromJson(body['mail']);
-      return 'Success : ${mail!.subject}';
+      print('mail succes ${mail!.subject}');
+      return mail!;
     } else {
-      return 'error';
+      return mail!;
     }
   }
 

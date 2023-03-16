@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/MyExpansion.dart';
@@ -44,17 +43,17 @@ List<Map<String, dynamic>> list2 = [
     "text2":
         "Est ullm neq fjgsdfb skhdgf jsdhfkj sdjfjb skdhj ksduhfuzsgfsgsjhgjksdbvjk SJKDjksd "
   },
-  //  {
-  //    "organization": "${OrganizationCard(
-  //     mysize: Size.square(1.2),
-  //      email: 'ahmed@gmail.com',
-  //     hash: 'xfkg',
-  //      images: [0, 0],
-  //      orgName: 'sfg',
-  //     subjectName: 'sdg',
-  //      time: '656',
-  //    )}"
-  // }
+  {
+    "organization": "${OrganizationCard(
+      mysize: Size.square(1.2),
+      email: 'ahmed@gmail.com',
+      hash: 'xfkg',
+      images: [0, 0],
+      orgName: 'sfg',
+      subjectName: 'sdg',
+      time: '656',
+    )}"
+  }
 ];
 
 class _inProgressState extends State<inProgress> {
@@ -72,7 +71,9 @@ class _inProgressState extends State<inProgress> {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       color: Colors.lightBlue,
                       icon: Icon(
                         Icons.chevron_left,
@@ -83,7 +84,7 @@ class _inProgressState extends State<inProgress> {
                       width: 100,
                     ),
                     Text(
-                      "In Progress",
+                      "Status",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     )

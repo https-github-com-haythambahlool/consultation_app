@@ -60,4 +60,23 @@ class AttachmentModel {
     data['updated_at'] = this.updatedAt;
     return data;
   }
+
+  Future<int> uploadImage(filePath, mailId, token) async {
+    var request = http.MultipartRequest("POST", Uri.parse(attachmentsUrl));
+//create multipart using filepath, string or bytes
+    var pic = await http.MultipartFile.fromPath('image', filePath);
+    request.fields['mail_id'] = mailId.toString();
+    request.fields['title'] = 'image_${DateTime.now()}';
+//add multipart to request
+    request.files.add(pic);
+    request.headers.addAll(
+        {'Accept': 'application/json', 'Authorization': 'Bearer $token'});
+    var response = await request.send();
+
+//Get the response from the server
+    var responseData = await response.stream.toBytes();
+    var responseString = String.fromCharCodes(responseData);
+    print(responseString);
+    return response.statusCode;
+  }
 }

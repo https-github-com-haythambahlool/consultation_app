@@ -1,5 +1,9 @@
 import 'package:consultation_app/components/MyExpansion.dart';
 import 'package:consultation_app/constant/const.dart';
+import 'package:consultation_app/model/AttachmentApi.dart';
+import 'package:consultation_app/model/MailModel.dart';
+import 'package:consultation_app/model/SenderModel.dart';
+import 'package:consultation_app/model_view/MailsApi.dart';
 import 'package:consultation_app/view/category_screen.dart';
 import 'package:consultation_app/view/statuses_screen.dart';
 import 'package:consultation_app/view/tags_screen.dart';
@@ -9,12 +13,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:provider/provider.dart';
 import '../components/AddImageCard.dart';
 import '../components/OrganizationDetails.dart/CommentCard.dart';
 import '../components/OrganizationDetails.dart/CommentField.dart';
 import '../components/my_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../model_view/AuthApi.dart';
 
 class NewInbox extends StatefulWidget {
   const NewInbox({super.key});
@@ -24,15 +30,85 @@ class NewInbox extends StatefulWidget {
 }
 
 class _NewInboxState extends State<NewInbox> {
+  TextEditingController idSender = TextEditingController();
+  TextEditingController mobileNumber = TextEditingController();
+  TextEditingController titleMail = TextEditingController();
+  TextEditingController desriptionMail = TextEditingController();
+  TextEditingController archiveNumber = TextEditingController();
+  TextEditingController decision = TextEditingController();
+  XFile? imagee;
+  SenderModel? sender;
+  MailModel? mail;
+  AttachmentModel attch = AttachmentModel();
+  MailsApi mailapi = MailsApi();
   @override
   Widget build(BuildContext context) {
+    var auth = Provider.of<Auth>(context);
     Size mySize = MediaQuery.of(context).size;
     ImagePicker picker = ImagePicker();
     XFile? image;
     return Scaffold(
       backgroundColor: backgrondColor,
-      appBar: MyAppBar(
-        title: AppLocalizations.of(context)!.newInbox,
+      appBar: AppBar(
+        leadingWidth: 100,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text(AppLocalizations.of(context)!.newInbox,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+            )),
+        centerTitle: true,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: TextButton(
+            child: Text(
+              AppLocalizations.of(context)!.cancel,
+              style: TextStyle(
+                color: ksecColor,
+                fontSize: 20,
+              ),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 12),
+            child: TextButton(
+              child: Text(
+                AppLocalizations.of(context)!.done,
+                style: TextStyle(
+                  color: ksecColor,
+                  fontSize: 20,
+                ),
+              ),
+              onPressed: () {
+                mailapi
+                    .createMail(
+                        token: auth.token!.token!,
+                        decision: decision.text,
+                        description: desriptionMail.text,
+                        senderId: idSender,
+                        finalDecision: decision.text,
+                        activities: [
+                          {'body': 'assa', 'user_id': '1'},
+                          {'body': 'assa', 'user_id': '1'},
+                        ],
+                        tags: [1],
+                        statusId: '2',
+                        subject: titleMail.text)
+                    .then((value) {
+                  attch.uploadImage(imagee!.path, value.id, auth.token!.token);
+                  Navigator.pop(context);
+                });
+              },
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -55,7 +131,7 @@ class _NewInboxState extends State<NewInbox> {
                             ),
                       ),
                       child: TextField(
-                        onChanged: (value) {},
+                        controller: idSender,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 15),
                             border: InputBorder.none,
@@ -81,7 +157,7 @@ class _NewInboxState extends State<NewInbox> {
                       color: Colors.grey,
                     ),
                     TextField(
-                      onChanged: (value) {},
+                      controller: mobileNumber,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 15),
                         border: InputBorder.none,
@@ -163,7 +239,7 @@ class _NewInboxState extends State<NewInbox> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextField(
-                        onChanged: (value) {},
+                        controller: titleMail,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(top: 15),
                           border: InputBorder.none,
@@ -178,7 +254,7 @@ class _NewInboxState extends State<NewInbox> {
                         color: Colors.grey,
                       ),
                       TextField(
-                        onChanged: (value) {},
+                        controller: desriptionMail,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: AppLocalizations.of(context)!.description,
@@ -219,6 +295,11 @@ class _NewInboxState extends State<NewInbox> {
                             style: TextStyle(color: ksecColor, fontSize: 12),
                           ),
                           children: [
+                            CalendarDatePicker(
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1950),
+                                lastDate: DateTime.now(),
+                                onDateChanged: (value) {}),
                             // SfDateRangePicker(
                             //   selectionMode:
                             //       DateRangePickerSelectionMode.single,
@@ -241,7 +322,7 @@ class _NewInboxState extends State<NewInbox> {
                           style: TextStyle(fontSize: 18),
                         ),
                         subtitle: TextField(
-                          onChanged: (value) {},
+                          controller: archiveNumber,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: '2022/6019',
@@ -383,7 +464,7 @@ class _NewInboxState extends State<NewInbox> {
                       ),
                     ),
                     TextField(
-                      onChanged: (value) {},
+                      controller: decision,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: AppLocalizations.of(context)!.addDecision,
@@ -408,7 +489,7 @@ class _NewInboxState extends State<NewInbox> {
                     borderRadius: BorderRadius.circular(25)),
                 child: TextButton(
                   onPressed: () async {
-                    await picker.pickImage(source: ImageSource.gallery);
+                    image = await picker.pickImage(source: ImageSource.gallery);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.addImage,

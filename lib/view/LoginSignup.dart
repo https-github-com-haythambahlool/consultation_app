@@ -270,12 +270,12 @@ class _LoginSignupState extends State<LoginSignup> {
           errorPassword = 'Required Password';
           errorEmail = 'Required Email';
           _isAuth = false;
-          // ScaffoldMessenger.of(context)
-          //   ..hideCurrentSnackBar()
-          //   ..showSnackBar(MySnackbar().mySnackBar(
-          //       body: 'Success Login to ${auth.user!.name}',
-          //       title: '',
-          //       type: ContentType.success));
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(MySnackbar().mySnackBar(
+                body: 'Success Login to ${auth.user!.name}',
+                title: '',
+                type: ContentType.success));
 
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {

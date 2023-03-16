@@ -4,6 +4,7 @@ import 'package:consultation_app/view/OfficialOrganization.dart';
 import 'package:consultation_app/view/category_screen.dart';
 import 'package:consultation_app/view/home.dart';
 import 'package:consultation_app/view/home.dart';
+import 'package:consultation_app/view/inProgress.dart';
 import 'package:consultation_app/view/search.dart';
 import 'package:consultation_app/view/search_filters.dart';
 
@@ -26,6 +27,7 @@ class Routes {
   static const String filterScreenRoute = "/filterScreen";
   static const String newInBoxRoute = "/newInBoxScreen";
   static const String homeRoute = "/home";
+  static const String inProgressRoute = "/inProgress";
 }
 
 class RouteGenerator {
@@ -53,6 +55,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NewInbox());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const Home());
+      case Routes.inProgressRoute:
+        return MaterialPageRoute(builder: (_) => const inProgress());
       default:
         return unDefinedRoute();
     }

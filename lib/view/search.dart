@@ -97,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         style: TextStyle(color: Color(0xff7C7C7C))),
                     TextButton(
                         onPressed: () {},
-                        child: Text('AppLocalizations.of(context)!.show'))
+                        child: Text(AppLocalizations.of(context)!.show))
                   ],
                 ),
               ),
@@ -118,16 +118,16 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              // OrganizationCard(
-              //   mysize: mySize,
-              //   email:
-              //       'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
-              //   hash: '#Urgent # Egyptian Military',
-              //   images: ['assets/images/1.jpg', 'assets/images/2.png'],
-              //   orgName: 'Oraganization Name',
-              //   subjectName: 'Here we add the subject',
-              //   time: 'Today, 11:00 AM',
-              // ),
+              OrganizationCard(
+                mysize: mySize,
+                email:
+                    'Here we add the subject Here we add the subject Here we add the subject Here we add the subject',
+                hash: '#Urgent # Egyptian Military',
+                images: ['assets/images/1.jpg', 'assets/images/2.png'],
+                orgName: 'Oraganization Name',
+                subjectName: 'Here we add the subject',
+                time: 'Today, 11:00 AM',
+              ),
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 17),
